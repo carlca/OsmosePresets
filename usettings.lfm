@@ -1,0 +1,36 @@
+object SettingsForm: TSettingsForm
+  Left = 937
+  Height = 240
+  Top = 358
+  Width = 236
+  Caption = 'Settings'
+  ClientHeight = 240
+  ClientWidth = 236
+  Position = poScreenCenter
+  LCLVersion = '3.99.0.0'
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
+  object DeviceList: TListBox
+    Left = 4
+    Height = 110
+    Top = 32
+    Width = 228
+    Align = alTop
+    BorderSpacing.Around = 4
+    BorderSpacing.CellAlignHorizontal = ccaLeftTop
+    BorderSpacing.CellAlignVertical = ccaLeftTop
+    ItemHeight = 0
+    TabOrder = 0
+  end
+  object TopPanel: TPanel
+    Left = 4
+    Height = 24
+    Top = 4
+    Width = 228
+    Align = alTop
+    Alignment = taLeftJustify
+    BorderSpacing.Around = 4
+    Caption = 'Select output  device'
+    TabOrder = 1
+  end
+end
