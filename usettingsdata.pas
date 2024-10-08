@@ -15,17 +15,20 @@ uses
 const
   SETTINGS_JSON = 'settings.json';
   DEVICE_NAME = 'Device Name';
+  DEVICE_INDEX = 'Device Index';
   CONFIG_EXT = '.config';
   APP_NAME = 'OsmosePresets';
 
 type
   TSettingsData = record
   private
+    FDeviceIndex: integer;
     FDeviceName: string;
     // private methods
     function GetAppConfigPath: string;
     function GetConfigFileName: string;
   public
+    property DeviceIndex: integer read FDeviceIndex write FDeviceIndex;
     property DeviceName: string read FDeviceName write FDeviceName;
     procedure Read;
     procedure Save;
@@ -39,12 +42,13 @@ var
   JSONData: TJSONData;
 begin
   if not FileExists(GetConfigFileName) then
-    Exit;
+    Save;
   JSONStream := TFileStream.Create(GetConfigFileName, fmOpenRead or fmShareDenyWrite);
   try
     JSONData := GetJSON(JSONStream);
     try
       Self.DeviceName := JSONData.FindPath(DEVICE_NAME).AsString;
+      Self.DeviceIndex := JSONData.FindPath(DEVICE_INDEX).AsInteger;
     finally
       JSONData.Free;
     end;
@@ -74,7 +78,8 @@ var
 begin
   JSONObj := TJSONObject.Create;
   try
-    JSONObj.Add(DEVICE_NAME, DeviceName);
+    JSONObj.Add(DEVICE_INDEX, Self.DeviceIndex);
+    JSONObj.Add(DEVICE_NAME, Self.DeviceName);
     SL := TStringList.Create;
     try
       SL.Text := JSONObj.FormatJSON;

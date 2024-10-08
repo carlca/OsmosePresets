@@ -1,10 +1,10 @@
 object SettingsForm: TSettingsForm
   Left = 952
-  Height = 178
+  Height = 186
   Top = 450
   Width = 236
   Caption = 'Settings'
-  ClientHeight = 178
+  ClientHeight = 186
   ClientWidth = 236
   Position = poScreenCenter
   LCLVersion = '3.99.0.0'
@@ -12,7 +12,7 @@ object SettingsForm: TSettingsForm
   OnShow = FormShow
   object DeviceList: TListBox
     Left = 4
-    Height = 110
+    Height = 118
     Top = 32
     Width = 228
     Align = alClient
@@ -45,7 +45,7 @@ object SettingsForm: TSettingsForm
   object ButtonPanel: TPanel
     Left = 0
     Height = 32
-    Top = 146
+    Top = 154
     Width = 236
     Align = alBottom
     ClientHeight = 32

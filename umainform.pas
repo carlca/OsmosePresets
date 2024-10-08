@@ -29,6 +29,7 @@ type
     procedure FormActivate(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
+    procedure FormResize(Sender:TObject);
     procedure FormShow(Sender: TObject);
     procedure PresetTreeAfterItemPaint(Sender: TBaseVirtualTree; TargetCanvas: TCanvas; Node: PVirtualNode; const ItemRect: TRect);
     procedure PresetTreeAfterPaint(Sender: TBaseVirtualTree; TargetCanvas: TCanvas);
@@ -41,6 +42,7 @@ type
   private
     FPresetData: TPresetData;
     FSettings: TSettingsData;
+    FReturnPressed: boolean;
     procedure AssignKeyUpEvent(AControl: TWinControl);
     procedure ClearCharacterList;
     procedure GlobalKeyUp(Sender: TObject; var Key: word; Shift: TShiftState);
@@ -81,6 +83,11 @@ begin
   FPresetData.Free;
 end;
 
+procedure TMainForm.FormResize(Sender:TObject);
+begin
+  //Caption := 'Osmose Presets - ' + Width.ToString;
+end;
+
 procedure TMainForm.ShowSettings;
 var
   SettingsForm: TSettingsForm;
@@ -89,7 +96,7 @@ begin
   try
     SettingsForm.Settings := FSettings;
     SettingsForm.ShowModal;
-    if SettingsForm.ModalResult = mrOK then
+    if SettingsForm.ModalResult = mrOk then
     begin
       FSettings := SettingsForm.Settings;
       FSettings.Save;
@@ -299,11 +306,32 @@ begin
 end;
 
 procedure TMainForm.PresetTreeKeyPress(Sender: TObject; var Key: char);
+var
+  Node: PVirtualNode;
+  Level: integer;
+  PrePtr: PPreset;
 begin
+  if FReturnPressed then
+  begin
+    FReturnPressed := False;
+    Exit;
+  end;
   if Key = #13 then
   begin
-
+    Node := PresetTree.FocusedNode;
+    if Assigned(Node) then
+    begin
+      Level := PresetTree.GetNodeLevel(Node);
+      if Level = 1 then
+      begin
+        PrePtr := PresetTree.GetNodeData(Node);
+        Midi.SendCC(FSettings.DeviceIndex, 0, PrePtr^.CC0);
+        Sleep(100);
+        Midi.SendPGM(FSettings.DeviceIndex, 0, PrePtr^.PGM);
+      end;
+    end;
   end;
+  FReturnPressed := True;
 end;
 
 procedure TMainForm.CharacterListClickCheck(Sender: TObject);

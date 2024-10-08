@@ -5,8 +5,8 @@ unit uSettingsForm;
 interface
 
 uses
-  Classes, ExtCtrls, PairSplitter, StdCtrls, SysUtils, Forms, Controls, Graphics,
-  Dialogs,
+  Buttons, Classes, ExtCtrls, StdCtrls, SysUtils, Forms, Controls,
+  Graphics, Dialogs,
   // project units
   usettingsdata,
   // ca units
@@ -34,18 +34,15 @@ implementation
 {$R *.lfm}
 
 procedure TSettingsForm.FormShow(Sender: TObject);
-var
-  Index: integer;
 begin
   Midi.GetDevices(ioOut, DeviceList.Items);
-  Index := DeviceList.Items.IndexOf(FSettings.DeviceName);
-  if Index >= 0 then
-    DeviceList.Selected[Index] := True;
+  DeviceList.ItemIndex := FSettings.DeviceIndex;
 end;
 
 procedure TSettingsForm.DeviceListSelectionChange(Sender: TObject; User: boolean);
 begin
   FSettings.DeviceName := DeviceList.GetSelectedText;
+  FSettings.DeviceIndex := DeviceList.ItemIndex;
 end;
 
 procedure TSettingsForm.FormResize(Sender: TObject);

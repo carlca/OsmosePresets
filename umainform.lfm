@@ -1,25 +1,26 @@
 object MainForm: TMainForm
-  Left = 517
+  Left = 797
   Height = 813
-  Top = 253
-  Width = 1250
+  Top = 233
+  Width = 1000
   BorderWidth = 8
   Caption = 'Osmose Presets'
   ClientHeight = 813
-  ClientWidth = 1250
+  ClientWidth = 1000
   FormStyle = fsSystemStayOnTop
   Position = poScreenCenter
   LCLVersion = '3.99.0.0'
   OnActivate = FormActivate
   OnCreate = FormCreate
   OnDestroy = FormDestroy
+  OnResize = FormResize
   OnShow = FormShow
   object PresetTree: TLazVirtualStringTree
     Cursor = 63
     Left = 8
     Height = 797
     Top = 8
-    Width = 1064
+    Width = 814
     Align = alClient
     DefaultText = 'Node'
     Header.AutoSizeIndex = 0
@@ -49,13 +50,6 @@ object MainForm: TMainForm
         Position = 3
         Text = 'Characters'
         Width = 480
-      end    
-      item
-        MaxWidth = 260
-        MinWidth = 260
-        Position = 4
-        Text = 'Send MIDI Command'
-        Width = 260
       end>
     Header.Font.Style = [fsBold]
     Header.MinHeight = 19
@@ -75,7 +69,7 @@ object MainForm: TMainForm
     OnKeyUp = PresetTreeKeyUp
   end
   object CharacterListPanel: TPanel
-    Left = 1072
+    Left = 822
     Height = 797
     Top = 8
     Width = 170
