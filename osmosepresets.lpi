@@ -41,12 +41,12 @@
         <UnitName Value="osmosepresets"/>
       </Unit>
       <Unit>
-        <Filename Value="umain.pas"/>
+        <Filename Value="umainform.pas"/>
         <IsPartOfProject Value="True"/>
-        <ComponentName Value="Main"/>
+        <ComponentName Value="MainForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="uMain"/>
+        <UnitName Value="uMainForm"/>
       </Unit>
       <Unit>
         <Filename Value="udata.pas"/>
@@ -54,17 +54,17 @@
         <UnitName Value="uData"/>
       </Unit>
       <Unit>
-        <Filename Value="usettings.pas"/>
+        <Filename Value="usettingsform.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="SettingsForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="uSettings"/>
+        <UnitName Value="uSettingsForm"/>
       </Unit>
       <Unit>
-        <Filename Value="usettingsrec.pas"/>
+        <Filename Value="usettingsdata.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="uSettingsRec"/>
+        <UnitName Value="uSettingsData"/>
       </Unit>
     </Units>
   </ProjectOptions>

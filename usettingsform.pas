@@ -1,4 +1,4 @@
-unit uSettings;
+unit uSettingsForm;
 
 {$mode ObjFPC}{$H+}
 
@@ -8,7 +8,7 @@ uses
   Classes, ExtCtrls, PairSplitter, StdCtrls, SysUtils, Forms, Controls, Graphics,
   Dialogs,
   // project units
-  uSettingsRec,
+  usettingsdata,
   // ca units
   caMidi, caMidiIntf, caMidiTypes, caDbg;
 
@@ -23,10 +23,10 @@ type
     procedure FormResize(Sender: TObject);
     procedure FormShow(Sender: TObject);
   private
-    FSettings: TSettings;
+    FSettings: TSettingsData;
     procedure RealignButtons;
   public
-    property Settings: TSettings read FSettings write FSettings;
+    property Settings: TSettingsData read FSettings write FSettings;
   end;
 
 implementation

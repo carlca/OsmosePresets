@@ -2,7 +2,7 @@ program osmosepresets;
 
 {$mode objfpc}{$H+}
 
-{$DEFINE debug}
+{.$DEFINE debug}
 
 uses
   {$IFDEF UNIX}
@@ -12,11 +12,13 @@ uses
   athreads,
   {$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  SysUtils, Forms, uMain, uData, uSettings, usettingsrec;
+  SysUtils, Forms, uMainForm, uData, uSettingsForm, uSettingsData;
 
 //{$R *.res}
 
+{$IFDEF DEBUG}
 const HeaptrcPath = '/Users/carlcaulkett/Code/FPC/OsmosePresets/heaptrc.txt';
+  {$ENDIF DEBUG}
 
 begin
   {$IFDEF DEBUG}
@@ -31,7 +33,7 @@ begin
   RequireDerivedFormResource:=True;
   Application.Scaled:=True;
   Application.Initialize;
-  Application.CreateForm(TMain, Main);
+  Application.CreateForm(TMainForm, MainForm);
   Application.Run;
 end.
 

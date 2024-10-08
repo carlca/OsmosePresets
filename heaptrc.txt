@@ -1,0 +1,68 @@
+/Users/carlcaulkett/Code/FPC/OsmosePresets/OsmosePresets 
+Heap dump by heaptrc unit of "/Users/carlcaulkett/Code/FPC/OsmosePresets/OsmosePresets"
+430 memory blocks allocated : 49388/50232
+420 memory blocks freed     : 48738/49576
+10 unfreed memory blocks : 650
+True heap size : 524288 (96 used in System startup)
+True free heap : 521312
+Should be : 521616
+Call trace for block $000000010EEBD180 size 128
+  $0000000104DD0D30
+  $0000000104DD4E51
+  $0000000104DBD499 line 34 of OsmosePresets.lpr
+  $0000000104DE0ABC
+  $000000020619E345
+Call trace for block $000000010EE53800 size 40
+  $0000000104DD0D30
+  $0000000104DD4E51
+  $0000000104DBD499 line 34 of OsmosePresets.lpr
+  $0000000104DE0ABC
+  $000000020619E345
+Call trace for block $000000010EE50100 size 32
+  $0000000104DD4E51
+  $0000000104DBD499 line 34 of OsmosePresets.lpr
+  $0000000104DE0ABC
+  $000000020619E345
+Call trace for block $000000010EEBD020 size 128
+  $0000000104DD0D30
+  $0000000104E36995 line 2022 of include/customform.inc
+  $0000000104E3A087 line 3221 of include/customform.inc
+  $0000000104E44609 line 2273 of include/application.inc
+  $0000000104DBD499 line 34 of OsmosePresets.lpr
+  $0000000104DE0ABC
+  $000000020619E345
+Call trace for block $000000010EE57A00 size 40
+  $0000000104DD0D30
+  $0000000104E36995 line 2022 of include/customform.inc
+  $0000000104E3A087 line 3221 of include/customform.inc
+  $0000000104E44609 line 2273 of include/application.inc
+  $0000000104DBD499 line 34 of OsmosePresets.lpr
+  $0000000104DE0ABC
+  $000000020619E345
+Call trace for block $000000010EEB4E80 size 162
+  $0000000104E36995 line 2022 of include/customform.inc
+  $0000000104E3A087 line 3221 of include/customform.inc
+  $0000000104E44609 line 2273 of include/application.inc
+  $0000000104DBD499 line 34 of OsmosePresets.lpr
+  $0000000104DE0ABC
+  $000000020619E345
+Call trace for block $000000010EE57800 size 32
+  $0000000104E36995 line 2022 of include/customform.inc
+  $0000000104E3A087 line 3221 of include/customform.inc
+  $0000000104E44609 line 2273 of include/application.inc
+  $0000000104DBD499 line 34 of OsmosePresets.lpr
+  $0000000104DE0ABC
+  $000000020619E345
+Call trace for block $000000010EE54000 size 32
+  $0000000104DD4DCE
+  $0000000104DE0ABC
+  $000000020619E345
+Call trace for block $000000010EE53F00 size 32
+  $0000000104DD4DCE
+  $0000000104DE0ABC
+  $000000020619E345
+Call trace for block $000000010EE53B00 size 24
+  $00000001050F0462 line 391 of cocoa/cocoaconfig.pas
+  $0000000104DD4DCE
+  $0000000104DE0ABC
+  $000000020619E345

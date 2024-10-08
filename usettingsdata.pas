@@ -1,4 +1,4 @@
-unit uSettingsRec;
+unit uSettingsData;
 
 {$mode ObjFPC}{$H+}
 {$modeswitch advancedrecords}
@@ -14,9 +14,12 @@ uses
 
 const
   SETTINGS_JSON = 'settings.json';
+  DEVICE_NAME = 'Device Name';
+  CONFIG_EXT = '.config';
+  APP_NAME = 'OsmosePresets';
 
 type
-  TSettings = record
+  TSettingsData = record
   private
     FDeviceName: string;
     // private methods
@@ -30,48 +33,48 @@ type
 
 implementation
 
-function TSettings.GetAppConfigPath: string;
+procedure TSettingsData.Read;
+var
+  JSONStream: TFileStream;
+  JSONData: TJSONData;
+begin
+  if not FileExists(GetConfigFileName) then
+    Exit;
+  JSONStream := TFileStream.Create(GetConfigFileName, fmOpenRead or fmShareDenyWrite);
+  try
+    JSONData := GetJSON(JSONStream);
+    try
+      Self.DeviceName := JSONData.FindPath(DEVICE_NAME).AsString;
+    finally
+      JSONData.Free;
+    end;
+  finally
+    JSONStream.Free;
+  end;
+end;
+
+function TSettingsData.GetAppConfigPath: string;
 var
   Path: string;
 begin
-  Path := IncludeTrailingPathDelimiter(GetUserDir) + '.config' + PathDelim + 'OsmosePresets';
+  Path := IncludeTrailingPathDelimiter(GetUserDir) + CONFIG_EXT + PathDelim + APP_NAME;
   ForceDirectories(Path);
   Result := Path;
 end;
 
-function TSettings.GetConfigFileName:string;
+function TSettingsData.GetConfigFileName:string;
 begin
   Result := GetAppConfigPath + PathDelim + SETTINGS_JSON;
 end;
 
-procedure TSettings.Read;
-var
-  JSONData: TJSONData;
-  JSONObj: TJSONObject;
-begin
-  JSONData := GetJSON(TFileStream.Create(GetConfigFileName, fmOpenRead));
-  try
-    if JSONData is TJSONObject then
-    begin
-      JSONObj := TJSONObject(JSONData);
-      Self.DeviceName := JSONObj.Get('DeviceName', '');
-      db('Self.DeviceName', Self.DeviceName);
-    end
-    else
-      raise Exception.Create('Invalid JSON format');
-  finally
-    JSONData.Free;
-  end;
-end;
-
-procedure TSettings.Save;
+procedure TSettingsData.Save;
 var
   JSONObj: TJSONObject;
   SL: TStrings;
 begin
   JSONObj := TJSONObject.Create;
   try
-    JSONObj.Add('Device Name', DeviceName);
+    JSONObj.Add(DEVICE_NAME, DeviceName);
     SL := TStringList.Create;
     try
       SL.Text := JSONObj.FormatJSON;

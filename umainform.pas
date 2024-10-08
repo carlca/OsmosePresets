@@ -1,4 +1,4 @@
-unit uMain;
+unit uMainForm;
 
 {$mode objfpc}{$H+}
 
@@ -11,15 +11,15 @@ uses
   // JSON units for settings
   FPJson, JsonParser,
   // project units
-  uData, uSettings, uSettingsRec,
+  uData, uSettingsForm, uSettingsData,
   // ca units
   caDbg, caMidi, caMidiIntf, caMidiTypes;
 
 type
 
-  { TMain }
+  { TMainForm }
 
-  TMain = class(TForm)
+  TMainForm = class(TForm)
     CharacterList: TCheckListBox;
     CharacterListPanel: TPanel;
     CharacterListHeader: TPanel;
@@ -40,8 +40,7 @@ type
     procedure PresetTreeKeyUp(Sender: TObject; var Key: word; Shift: TShiftState);
   private
     FPresetData: TPresetData;
-    FSettings: TSettings;
-    function GetSettings: TSettings;
+    FSettings: TSettingsData;
     procedure AssignKeyUpEvent(AControl: TWinControl);
     procedure ClearCharacterList;
     procedure GlobalKeyUp(Sender: TObject; var Key: word; Shift: TShiftState);
@@ -49,6 +48,7 @@ type
     procedure LoadCharacterList;
     procedure LoadPresetNodesByPresetName;
     procedure LoadPresetNodesByCategory;
+    procedure ShowSettings;
   private
     // Terminate stuff
     FClosingForm: TForm;
@@ -61,26 +61,27 @@ type
   end;
 
 var
-  Main: TMain;
+  MainForm: TMainForm;
 
 implementation
 
 {$R *.lfm}
 
-{ TMain }
+{ TMainForm }
 
-procedure TMain.FormCreate(Sender: TObject);
+procedure TMainForm.FormCreate(Sender: TObject);
 begin
+  FSettings.Read;
   AssignKeyUpEvent(Self);
   FPresetData := TPresetData.Create;
 end;
 
-procedure TMain.FormDestroy(Sender: TObject);
+procedure TMainForm.FormDestroy(Sender: TObject);
 begin
   FPresetData.Free;
 end;
 
-function TMain.GetSettings: TSettings;
+procedure TMainForm.ShowSettings;
 var
   SettingsForm: TSettingsForm;
 begin
@@ -88,14 +89,17 @@ begin
   try
     SettingsForm.Settings := FSettings;
     SettingsForm.ShowModal;
+    if SettingsForm.ModalResult = mrOK then
+    begin
+      FSettings := SettingsForm.Settings;
+      FSettings.Save;
+    end;
   finally
-    Result := SettingsForm.Settings;
-    Result.WriteJSON;
     SettingsForm.Free;
   end;
 end;
 
-procedure TMain.AssignKeyUpEvent(AControl: TWinControl);
+procedure TMainForm.AssignKeyUpEvent(AControl: TWinControl);
 var
   i: Integer;
   ChildControl: TControl;
@@ -107,18 +111,18 @@ begin
     if ChildControl is TWinControl then
       AssignKeyUpEvent(TWinControl(ChildControl))
     else if ChildControl is TControl then
-      TWinControl(ChildControl).OnKeyUp := @GlobalKeyUp; // Change TControl(ChildControl) to TWinControl(ChildControl)
+      TWinControl(ChildControl).OnKeyUp := @GlobalKeyUp;
   end;
 end;
 
-procedure TMain.GlobalKeyUp(Sender: TObject; var Key: word; Shift: TShiftState);
+procedure TMainForm.GlobalKeyUp(Sender: TObject; var Key: word; Shift: TShiftState);
 begin
   {$IFDEF DARWIN}
   if Shift = [ssMeta] then
   begin
     case Key of
       VK_Q:           TerminateApplication;
-      VK_OEM_COMMA:   FSettings := GetSettings;
+      VK_OEM_COMMA:   ShowSettings;
     end;
   end;
   {$ENDIF}
@@ -128,7 +132,7 @@ begin
   //{$ENDIF}
 end;
 
-procedure TMain.FormShow(Sender: TObject);
+procedure TMainForm.FormShow(Sender: TObject);
 begin
   LoadCategoryNodes;
   LoadPresetNodesByPresetName;
@@ -136,7 +140,7 @@ begin
   CharacterList.Color := clMoneyGreen;
 end;
 
-procedure TMain.PresetTreeAfterItemPaint(Sender: TBaseVirtualTree; TargetCanvas: TCanvas; Node: PVirtualNode; const ItemRect: TRect);
+procedure TMainForm.PresetTreeAfterItemPaint(Sender: TBaseVirtualTree; TargetCanvas: TCanvas; Node: PVirtualNode; const ItemRect: TRect);
 var
   Level: cardinal;
   IsSelected: boolean;
@@ -228,17 +232,17 @@ begin
   end;
 end;
 
-procedure TMain.PresetTreeAfterPaint(Sender: TBaseVirtualTree; TargetCanvas: TCanvas);
+procedure TMainForm.PresetTreeAfterPaint(Sender: TBaseVirtualTree; TargetCanvas: TCanvas);
 begin
 
 end;
 
-procedure TMain.PresetTreeCollapsing(Sender: TBaseVirtualTree; Node: PVirtualNode; var Allowed: boolean);
+procedure TMainForm.PresetTreeCollapsing(Sender: TBaseVirtualTree; Node: PVirtualNode; var Allowed: boolean);
 begin
   ClearCharacterList;
 end;
 
-procedure TMain.PresetTreeExpanding(Sender: TBaseVirtualTree; Node: PVirtualNode; var Allowed: boolean);
+procedure TMainForm.PresetTreeExpanding(Sender: TBaseVirtualTree; Node: PVirtualNode; var Allowed: boolean);
 var
   RootNode: PVirtualNode;
   Level: cardinal;
@@ -261,12 +265,12 @@ begin
   Allowed := True;
 end;
 
-procedure TMain.PresetTreeGetNodeDataSize(Sender: TBaseVirtualTree; var NodeDataSize: Integer);
+procedure TMainForm.PresetTreeGetNodeDataSize(Sender: TBaseVirtualTree; var NodeDataSize: Integer);
 begin
   NodeDataSize := SizeOf(PPreset);
 end;
 
-procedure TMain.PresetTreeGetText(Sender: TBaseVirtualTree; Node: PVirtualNode; Column: TColumnIndex; TextType: TVSTTextType; var CellText: string);
+procedure TMainForm.PresetTreeGetText(Sender: TBaseVirtualTree; Node: PVirtualNode; Column: TColumnIndex; TextType: TVSTTextType; var CellText: string);
 var
   PrePtr: PPreset;
   CatPtr: PCategory;
@@ -294,7 +298,7 @@ begin
   end;
 end;
 
-procedure TMain.PresetTreeKeyPress(Sender: TObject; var Key: char);
+procedure TMainForm.PresetTreeKeyPress(Sender: TObject; var Key: char);
 begin
   if Key = #13 then
   begin
@@ -302,11 +306,11 @@ begin
   end;
 end;
 
-procedure TMain.CharacterListClickCheck(Sender: TObject);
+procedure TMainForm.CharacterListClickCheck(Sender: TObject);
 begin
 end;
 
-procedure TMain.FormActivate(Sender: TObject);
+procedure TMainForm.FormActivate(Sender: TObject);
 begin
   ActiveControl := PresetTree;
   PresetTree.SetFocus;
@@ -317,18 +321,18 @@ begin
   //PresetTree.FocusedColumn := 0;
 end;
 
-procedure TMain.PresetTreeKeyUp(Sender: TObject; var Key: word; Shift: TShiftState);
+procedure TMainForm.PresetTreeKeyUp(Sender: TObject; var Key: word; Shift: TShiftState);
 begin
   //db(Key);
   //db(Shift);
 end;
 
-procedure TMain.ClearCharacterList;
+procedure TMainForm.ClearCharacterList;
 begin
   CharacterList.Items.Clear;
 end;
 
-procedure TMain.LoadCategoryNodes;
+procedure TMainForm.LoadCategoryNodes;
 var
   Index: Integer;
 begin
@@ -336,13 +340,13 @@ begin
     PresetTree.AddChild(nil, FPresetData.Categories[Index]);
 end;
 
-procedure TMain.LoadCharacterList;
+procedure TMainForm.LoadCharacterList;
 begin
   CharacterList.Items := FPresetData.CharacterList;
   CharacterList.CheckAll(cbChecked);
 end;
 
-procedure TMain.LoadPresetNodesByPresetName;
+procedure TMainForm.LoadPresetNodesByPresetName;
 var
   Preset: TPreset;
   PNode: PVirtualNode;
@@ -361,7 +365,7 @@ begin
   end;
 end;
 
-procedure TMain.LoadPresetNodesByCategory;
+procedure TMainForm.LoadPresetNodesByCategory;
 var
   Preset: TPreset;
   PNode: PVirtualNode;
@@ -382,23 +386,23 @@ begin
   end;
 end;
 
-function TMain.CloseQuery: boolean;
+function TMainForm.CloseQuery: boolean;
 begin
-  if not Main.IsTerminating then
+  if not MainForm.IsTerminating then
   begin
-    Main.TerminateApplication;
+    MainForm.TerminateApplication;
     Result := False;  // Prevent the default close behavior
   end
   else
     Result := True;  // Allow the form to close if we're already terminating
 end;
 
-class function TMain.IsTerminating: boolean;
+class function TMainForm.IsTerminating: boolean;
 begin
   Result := FIsTerminating;
 end;
 
-class procedure TMain.TerminateApplication;
+class procedure TMainForm.TerminateApplication;
 var
   ClosingForm: TForm;
   ClosingLabel: TLabel;
@@ -428,7 +432,7 @@ begin
       Application.ProcessMessages; // Ensure the form is displayed
 
       // Store the form reference
-      Main.FClosingForm := ClosingForm;
+      MainForm.FClosingForm := ClosingForm;
     except
       ClosingForm.Free; // Free the form if an exception occurs
       raise;
@@ -439,10 +443,10 @@ begin
 end;
 
 initialization
-  TMain.FIsTerminating := False;
+  TMainForm.FIsTerminating := False;
 
 finalization
-  if Assigned(Main.FClosingForm) then
-    Main.FClosingForm.Free;
+  if Assigned(MainForm.FClosingForm) then
+    MainForm.FClosingForm.Free;
 
 end.
