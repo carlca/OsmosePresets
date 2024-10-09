@@ -91,7 +91,7 @@
       </Options>
     </Linking>
     <Other>
-      <CustomOptions Value="-WM11.0
+      <CustomOptions Value="-WM10.4
 -vd
 -gh 
 -gl"/>

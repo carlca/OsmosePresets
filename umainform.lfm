@@ -1,13 +1,12 @@
 object MainForm: TMainForm
-  Left = 797
+  Left = 695
   Height = 813
-  Top = 233
+  Top = 203
   Width = 1000
   BorderWidth = 8
-  Caption = 'Osmose Presets'
+  Caption = 'OsmosePresets 0.1.1 alpha'
   ClientHeight = 813
   ClientWidth = 1000
-  FormStyle = fsSystemStayOnTop
   Position = poScreenCenter
   LCLVersion = '3.99.0.0'
   OnActivate = FormActivate

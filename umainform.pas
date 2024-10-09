@@ -326,7 +326,7 @@ begin
       begin
         PrePtr := PresetTree.GetNodeData(Node);
         Midi.SendCC(FSettings.DeviceIndex, 0, PrePtr^.CC0);
-        Sleep(100);
+        Sleep(200);
         Midi.SendPGM(FSettings.DeviceIndex, 0, PrePtr^.PGM);
       end;
     end;
