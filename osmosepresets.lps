@@ -10,7 +10,7 @@
         <UnitName Value="osmosepresets"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="45" Y="35"/>
-        <UsageCount Value="85"/>
+        <UsageCount Value="91"/>
       </Unit>
       <Unit>
         <Filename Value="umainform.pas"/>
@@ -19,10 +19,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="uMainForm"/>
-        <IsVisibleTab Value="True"/>
-        <TopLine Value="232"/>
-        <CursorPos X="31" Y="264"/>
-        <UsageCount Value="85"/>
+        <CursorPos Y="27"/>
+        <UsageCount Value="91"/>
         <Bookmarks Count="1">
           <Item0 X="9" Y="327" Left="1" Top="301"/>
         </Bookmarks>
@@ -33,10 +31,10 @@
         <Filename Value="udata.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="uData"/>
-        <EditorIndex Value="9"/>
+        <EditorIndex Value="11"/>
         <TopLine Value="6"/>
         <CursorPos X="19" Y="32"/>
-        <UsageCount Value="85"/>
+        <UsageCount Value="91"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -46,9 +44,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="uSettingsForm"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
-        <CursorPos X="6" Y="43"/>
-        <UsageCount Value="78"/>
+        <CursorPos X="116" Y="32"/>
+        <UsageCount Value="84"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -58,28 +57,28 @@
         <EditorIndex Value="1"/>
         <TopLine Value="24"/>
         <CursorPos Y="36"/>
-        <UsageCount Value="77"/>
+        <UsageCount Value="83"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="udbg.pas"/>
         <UnitName Value="uDbg"/>
-        <UsageCount Value="14"/>
+        <UsageCount Value="13"/>
       </Unit>
       <Unit>
         <Filename Value="../camidi/camidi.pas"/>
         <UnitName Value="caMidi"/>
         <EditorIndex Value="5"/>
-        <CursorPos X="22" Y="8"/>
-        <UsageCount Value="50"/>
+        <CursorPos X="6" Y="17"/>
+        <UsageCount Value="53"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="../camidi/camidiintf.pas"/>
         <UnitName Value="caMidiIntf"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="8"/>
         <CursorPos X="78" Y="12"/>
-        <UsageCount Value="38"/>
+        <UsageCount Value="41"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -89,22 +88,22 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="14"/>
+        <UsageCount Value="13"/>
       </Unit>
       <Unit>
         <Filename Value="../camidi/camidimac.pas"/>
         <UnitName Value="caMidiMac"/>
-        <EditorIndex Value="7"/>
-        <CursorPos X="78" Y="33"/>
-        <UsageCount Value="41"/>
+        <EditorIndex Value="9"/>
+        <CursorPos Y="19"/>
+        <UsageCount Value="44"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="/Applications/Lazarus_trunk/fpcsrc/packages/univint/src/MIDIServices.pas"/>
-        <EditorIndex Value="8"/>
+        <EditorIndex Value="10"/>
         <TopLine Value="716"/>
         <CursorPos X="10" Y="1352"/>
-        <UsageCount Value="41"/>
+        <UsageCount Value="44"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -112,7 +111,7 @@
         <UnitName Value="caDbg"/>
         <EditorIndex Value="4"/>
         <CursorPos X="41" Y="8"/>
-        <UsageCount Value="40"/>
+        <UsageCount Value="43"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -120,7 +119,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="99"/>
         <CursorPos X="45" Y="111"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
       </Unit>
       <Unit>
         <Filename Value="../caLibrary/cahelper.pas"/>
@@ -128,7 +127,7 @@
         <EditorIndex Value="3"/>
         <TopLine Value="34"/>
         <CursorPos X="6" Y="58"/>
-        <UsageCount Value="40"/>
+        <UsageCount Value="43"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -137,7 +136,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="48"/>
         <CursorPos X="51" Y="51"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="8"/>
       </Unit>
       <Unit>
         <Filename Value="/Applications/Lazarus_trunk/lazarus/lcl/lcltype.pp"/>
@@ -145,13 +144,13 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="503"/>
         <CursorPos X="24" Y="540"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="8"/>
       </Unit>
       <Unit>
         <Filename Value="/Applications/Lazarus_trunk/fpcsrc/packages/univint/src/MacOSAll.pas"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="43" Y="5"/>
-        <UsageCount Value="5"/>
+        <UsageCount Value="4"/>
       </Unit>
       <Unit>
         <Filename Value="/Applications/Lazarus_trunk/lazarus/lcl/forms.pp"/>
@@ -159,28 +158,28 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="24"/>
         <CursorPos X="63" Y="30"/>
-        <UsageCount Value="6"/>
+        <UsageCount Value="5"/>
       </Unit>
       <Unit>
         <Filename Value="/Applications/Lazarus_trunk/lazarus/lcl/include/control.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="4126"/>
         <CursorPos X="3" Y="4170"/>
-        <UsageCount Value="6"/>
+        <UsageCount Value="5"/>
       </Unit>
       <Unit>
         <Filename Value="/Applications/Lazarus_trunk/fpcsrc/packages/fcl-json/src/fpjson.pp"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="1647"/>
         <CursorPos X="3" Y="1653"/>
-        <UsageCount Value="6"/>
+        <UsageCount Value="5"/>
       </Unit>
       <Unit>
         <Filename Value="umainform.lfm"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="82"/>
         <CursorPos X="110" Y="87"/>
-        <UsageCount Value="6"/>
+        <UsageCount Value="5"/>
         <DefaultSyntaxHighlighter Value="LFM"/>
       </Unit>
       <Unit>
@@ -189,22 +188,26 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="54"/>
         <CursorPos X="40" Y="68"/>
-        <UsageCount Value="7"/>
+        <UsageCount Value="6"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../camidi/camidilinux.pas"/>
+        <UnitName Value="caMidiLinux"/>
+        <EditorIndex Value="6"/>
+        <CursorPos Y="24"/>
+        <UsageCount Value="13"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../camidi/camidiwin.pas"/>
+        <UnitName Value="caMidiWin"/>
+        <EditorIndex Value="7"/>
+        <CursorPos X="27" Y="19"/>
+        <UsageCount Value="13"/>
+        <Loaded Value="True"/>
       </Unit>
     </Units>
     <JumpHistory HistoryIndex="29">
-      <Position>
-        <Filename Value="../camidi/camidimac.pas"/>
-        <Caret Line="67" Column="19" TopLine="30"/>
-      </Position>
-      <Position>
-        <Filename Value="../camidi/camidimac.pas"/>
-        <Caret Line="84" Column="19" TopLine="47"/>
-      </Position>
-      <Position>
-        <Filename Value="../camidi/camidimac.pas"/>
-        <Caret Line="128" Column="15" TopLine="92"/>
-      </Position>
       <Position>
         <Filename Value="../camidi/camidimac.pas"/>
       </Position>
@@ -308,6 +311,17 @@
       <Position>
         <Filename Value="umainform.pas"/>
         <Caret Line="264" Column="31" TopLine="232"/>
+      </Position>
+      <Position>
+        <Filename Value="umainform.pas"/>
+        <Caret Line="314" Column="114" TopLine="292"/>
+      </Position>
+      <Position>
+        <Filename Value="../camidi/camidilinux.pas"/>
+        <Caret Line="9" Column="17"/>
+      </Position>
+      <Position>
+        <Filename Value="../camidi/camidilinux.pas"/>
       </Position>
     </JumpHistory>
     <RunParams>
