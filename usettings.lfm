@@ -1,0 +1,74 @@
+object SettingsForm: TSettingsForm
+  Left = 952
+  Height = 178
+  Top = 450
+  Width = 236
+  Caption = 'Settings'
+  ClientHeight = 178
+  ClientWidth = 236
+  Position = poScreenCenter
+  LCLVersion = '3.99.0.0'
+  OnResize = FormResize
+  OnShow = FormShow
+  object DeviceList: TListBox
+    Left = 4
+    Height = 110
+    Top = 32
+    Width = 228
+    Align = alClient
+    BorderSpacing.Around = 4
+    BorderSpacing.CellAlignHorizontal = ccaLeftTop
+    BorderSpacing.CellAlignVertical = ccaLeftTop
+    Items.Strings = (
+      '1'
+      '2'
+      '3'
+      '4'
+      '5'
+      '6'
+    )
+    ItemHeight = 16
+    TabOrder = 0
+    OnSelectionChange = DeviceListSelectionChange
+  end
+  object TopPanel: TPanel
+    Left = 4
+    Height = 24
+    Top = 4
+    Width = 228
+    Align = alTop
+    Alignment = taLeftJustify
+    BorderSpacing.Around = 4
+    Caption = 'Select output  device'
+    TabOrder = 1
+  end
+  object ButtonPanel: TPanel
+    Left = 0
+    Height = 32
+    Top = 146
+    Width = 236
+    Align = alBottom
+    ClientHeight = 32
+    ClientWidth = 236
+    TabOrder = 2
+    object OKButton: TButton
+      Left = 32
+      Height = 26
+      Top = 2
+      Width = 75
+      Caption = 'OK'
+      Default = True
+      ModalResult = 1
+      TabOrder = 0
+    end
+    object CancelButton: TButton
+      Left = 116
+      Height = 26
+      Top = 2
+      Width = 75
+      Caption = 'Cancel'
+      ModalResult = 2
+      TabOrder = 1
+    end
+  end
+end
