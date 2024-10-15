@@ -136,6 +136,7 @@ begin
   {$IFDEF WINDOWS}
   Caption := 'OsmosePresets 0.2.0 alpha - for Windows';
   {$ENDIF}
+  PresetTree.Header.Height := 19;
 end;
 
 procedure TMainForm.OptionsButtonClick(Sender: TObject);
@@ -160,8 +161,14 @@ var
     end
     else
     begin
+      {$IFDEF DARWIN}
       Canvas.Pen.Color := PresetTree.Colors.UnfocusedColor;
       Canvas.Brush.Color := PresetTree.Colors.UnfocusedColor;
+      {$ENDIF}
+      {$IFDEF WINDOWS}
+      Canvas.Pen.Color := clWhite;
+      Canvas.Brush.Color := clWhite;
+      {$ENDIF}
     end;
     Canvas.FillRect(1, 1, 16, 16);
   end;
@@ -322,6 +329,7 @@ var
   Node: PVirtualNode;
   Level: integer;
   PrePtr: PPreset;
+  ExcCount: integer = 0;
 begin
   {$IFDEF DARWIN}
   if FReturnPressed then
@@ -339,9 +347,13 @@ begin
       if Level = 1 then
       begin
         PrePtr := PresetTree.GetNodeData(Node);
-        Midi.SendCC(FSettings.DeviceIndex, 0, PrePtr^.CC0);
+        if not Midi.SendCC(FSettings.DeviceIndex, 0, PrePtr^.CC0) then
+          Inc(ExcCount);
         Sleep(200);
-        Midi.SendPGM(FSettings.DeviceIndex, 0, PrePtr^.PGM);
+        if not Midi.SendPGM(FSettings.DeviceIndex, 0, PrePtr^.PGM) then
+          Inc(ExcCount);
+        if ExcCount > 0 then
+          Key := #0;
       end;
     end;
   end;
