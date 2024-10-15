@@ -128,7 +128,14 @@ begin
   LoadCategoryNodes;
   LoadPresetNodesByPresetName;
   LoadPresetNodesByCategory;
-  CharacterList.Color := clMoneyGreen;
+  CharacterList.Color := PresetTree.Color;
+  CharacterListHeaderLabel.Color := clBtnFace;
+  {$IFDEF DARWIN}
+  Caption := 'OsmosePresets 0.2.0 alpha - for macOS';
+  {$ENDIF}
+  {$IFDEF WINDOWS}
+  Caption := 'OsmosePresets 0.2.0 alpha - for Windows';
+  {$ENDIF}
 end;
 
 procedure TMainForm.OptionsButtonClick(Sender: TObject);
@@ -316,11 +323,13 @@ var
   Level: integer;
   PrePtr: PPreset;
 begin
+  {$IFDEF DARWIN}
   if FReturnPressed then
   begin
     FReturnPressed := False;
     Exit;
   end;
+  {$ENDIF}
   if Key = #13 then
   begin
     Node := PresetTree.FocusedNode;

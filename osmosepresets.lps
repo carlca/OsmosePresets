@@ -2,13 +2,13 @@
 <CONFIG>
   <ProjectSession>
     <Version Value="12"/>
-    <BuildModes Active="macOS"/>
+    <BuildModes Active="Windows"/>
     <Units>
       <Unit>
         <Filename Value="OsmosePresets.lpr"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="osmosepresets"/>
-        <UsageCount Value="20"/>
+        <UsageCount Value="39"/>
       </Unit>
       <Unit>
         <Filename Value="umainform.pas"/>
@@ -17,9 +17,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="uMainForm"/>
-        <IsVisibleTab Value="True"/>
-        <CursorPos X="58" Y="7"/>
-        <UsageCount Value="20"/>
+        <TopLine Value="313"/>
+        <CursorPos X="18" Y="326"/>
+        <UsageCount Value="39"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -27,7 +27,7 @@
         <Filename Value="udata.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="uData"/>
-        <UsageCount Value="20"/>
+        <UsageCount Value="39"/>
       </Unit>
       <Unit>
         <Filename Value="usettingsform.pas"/>
@@ -36,34 +36,169 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="uSettingsForm"/>
-        <UsageCount Value="20"/>
+        <UsageCount Value="39"/>
       </Unit>
       <Unit>
         <Filename Value="usettingsdata.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="uSettingsData"/>
-        <UsageCount Value="20"/>
+        <UsageCount Value="39"/>
       </Unit>
       <Unit>
         <Filename Value="../caMidi/camidi.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="caMidi"/>
-        <UsageCount Value="20"/>
+        <EditorIndex Value="1"/>
+        <CursorPos X="31" Y="8"/>
+        <UsageCount Value="39"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="../caMidi/camidiintf.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="caMidiIntf"/>
-        <UsageCount Value="20"/>
+        <EditorIndex Value="2"/>
+        <UsageCount Value="39"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="../camidi/camiditypes.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="caMidiTypes"/>
-        <UsageCount Value="20"/>
+        <UsageCount Value="39"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../caMidi/camidiwin.pas"/>
+        <UnitName Value="caMidiWin"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="113"/>
+        <CursorPos X="5" Y="158"/>
+        <UsageCount Value="21"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../caMidi/camidimac.pas"/>
+        <UnitName Value="caMidiMac"/>
+        <EditorIndex Value="5"/>
+        <TopLine Value="83"/>
+        <UsageCount Value="17"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/Applications/Lazarus_trunk/fpcsrc/packages/winunits-base/src/mmsystem.pp"/>
+        <UnitName Value="MMSystem"/>
+        <EditorIndex Value="4"/>
+        <TopLine Value="2583"/>
+        <CursorPos X="21" Y="2588"/>
+        <UsageCount Value="17"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/Applications/Lazarus_trunk/lazarus/lcl/graphics.pp"/>
+        <UnitName Value="Graphics"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="305"/>
+        <CursorPos X="12" Y="310"/>
+        <UsageCount Value="9"/>
       </Unit>
     </Units>
-    <JumpHistory HistoryIndex="-1"/>
+    <JumpHistory HistoryIndex="23">
+      <Position>
+        <Filename Value="../caMidi/camidiwin.pas"/>
+        <Caret Line="24"/>
+      </Position>
+      <Position>
+        <Filename Value="../caMidi/camidiwin.pas"/>
+        <Caret Line="52" TopLine="37"/>
+      </Position>
+      <Position>
+        <Filename Value="../caMidi/camidiwin.pas"/>
+        <Caret Line="153" TopLine="89"/>
+      </Position>
+      <Position>
+        <Filename Value="../caMidi/camidiwin.pas"/>
+        <Caret Line="66" TopLine="2"/>
+      </Position>
+      <Position>
+        <Filename Value="../caMidi/camidiwin.pas"/>
+        <Caret Line="113" TopLine="89"/>
+      </Position>
+      <Position>
+        <Filename Value="../caMidi/camidiwin.pas"/>
+        <Caret Line="151" Column="53" TopLine="106"/>
+      </Position>
+      <Position>
+        <Filename Value="../caMidi/camidiwin.pas"/>
+        <Caret Line="163" Column="27" TopLine="124"/>
+      </Position>
+      <Position>
+        <Filename Value="../caMidi/camidiwin.pas"/>
+      </Position>
+      <Position>
+        <Filename Value="../caMidi/camidiwin.pas"/>
+        <Caret Line="111" Column="27" TopLine="99"/>
+      </Position>
+      <Position>
+        <Filename Value="../caMidi/camidiwin.pas"/>
+        <Caret Line="25" TopLine="2"/>
+      </Position>
+      <Position>
+        <Filename Value="../caMidi/camidiwin.pas"/>
+        <Caret Line="102" Column="26" TopLine="100"/>
+      </Position>
+      <Position>
+        <Filename Value="../caMidi/camidiwin.pas"/>
+        <Caret Line="24" TopLine="2"/>
+      </Position>
+      <Position>
+        <Filename Value="../caMidi/camidiwin.pas"/>
+        <Caret Line="129" Column="75" TopLine="87"/>
+      </Position>
+      <Position>
+        <Filename Value="../caMidi/camidiwin.pas"/>
+        <Caret Line="63" Column="7" TopLine="40"/>
+      </Position>
+      <Position>
+        <Filename Value="../caMidi/camidiwin.pas"/>
+      </Position>
+      <Position>
+        <Filename Value="../caMidi/camidiwin.pas"/>
+        <Caret Line="132" Column="5" TopLine="87"/>
+      </Position>
+      <Position>
+        <Filename Value="umainform.pas"/>
+        <Caret Line="132" Column="39" TopLine="94"/>
+      </Position>
+      <Position>
+        <Filename Value="../caMidi/camidiwin.pas"/>
+        <Caret Line="14" Column="83"/>
+      </Position>
+      <Position>
+        <Filename Value="../caMidi/camidiwin.pas"/>
+        <Caret Line="84" Column="90" TopLine="79"/>
+      </Position>
+      <Position>
+        <Filename Value="../caMidi/camidiwin.pas"/>
+        <Caret Line="28" Column="138" TopLine="23"/>
+      </Position>
+      <Position>
+        <Filename Value="../caMidi/camidiwin.pas"/>
+        <Caret Line="102" Column="139" TopLine="59"/>
+      </Position>
+      <Position>
+        <Filename Value="../caMidi/camidiwin.pas"/>
+        <Caret Line="88" TopLine="63"/>
+      </Position>
+      <Position>
+        <Filename Value="../caMidi/camidiwin.pas"/>
+        <Caret Line="141" TopLine="105"/>
+      </Position>
+      <Position>
+        <Filename Value="../caMidi/camidiwin.pas"/>
+        <Caret Line="122" Column="45" TopLine="103"/>
+      </Position>
+    </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>
       <Modes ActiveMode=""/>

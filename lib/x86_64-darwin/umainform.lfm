@@ -121,14 +121,16 @@ object MainForm: TMainForm
     Top = 772
     Width = 984
     Align = alBottom
+    BorderWidth = 4
     ClientHeight = 33
     ClientWidth = 984
     TabOrder = 2
     object OptionsButton: TSpeedButton
-      Left = 8
-      Height = 22
-      Top = 8
+      Left = 5
+      Height = 23
+      Top = 5
       Width = 67
+      Align = alLeft
       Caption = 'Options'
       OnClick = OptionsButtonClick
     end
