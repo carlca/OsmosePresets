@@ -133,6 +133,9 @@ begin
   {$IFDEF DARWIN}
   Caption := 'OsmosePresets 0.2.0 alpha - for macOS';
   {$ENDIF}
+  {$IFDEF LINUX}
+  Caption := 'OsmosePresets 0.2.0 alpha - for Linux';
+  {$ENDIF}
   {$IFDEF WINDOWS}
   Caption := 'OsmosePresets 0.2.0 alpha - for Windows';
   {$ENDIF}
