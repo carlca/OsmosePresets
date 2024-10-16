@@ -28,7 +28,7 @@
           </SearchPaths>
           <CodeGeneration>
             <TargetCPU Value="x86_64"/>
-            <TargetOS Value="win64"/>
+            <TargetOS Value="linux"/>
           </CodeGeneration>
           <Linking>
             <Debugging>
@@ -37,11 +37,37 @@
               <UseHeaptrc Value="True"/>
               <UseExternalDbgSyms Value="True"/>
             </Debugging>
-            <Options>
-              <Win32>
-                <GraphicApplication Value="True"/>
-              </Win32>
-            </Options>
+          </Linking>
+          <Other>
+            <CustomOptions Value="-vd
+-gh 
+-glh
+-Xg"/>
+          </Other>
+        </CompilerOptions>
+      </Item>
+      <Item Name="Linux">
+        <CompilerOptions>
+          <Version Value="11"/>
+          <Target>
+            <Filename Value="OsmosePresets"/>
+          </Target>
+          <SearchPaths>
+            <IncludeFiles Value="$(ProjOutDir)"/>
+            <OtherUnitFiles Value="../caMidi"/>
+            <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
+          </SearchPaths>
+          <CodeGeneration>
+            <TargetCPU Value="x86_64"/>
+            <TargetOS Value="linux"/>
+          </CodeGeneration>
+          <Linking>
+            <Debugging>
+              <RunWithoutDebug Value="True"/>
+              <DebugInfoType Value="dsDwarf2Set"/>
+              <UseHeaptrc Value="True"/>
+              <UseExternalDbgSyms Value="True"/>
+            </Debugging>
           </Linking>
           <Other>
             <CustomOptions Value="-vd

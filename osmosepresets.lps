@@ -2,13 +2,13 @@
 <CONFIG>
   <ProjectSession>
     <Version Value="12"/>
-    <BuildModes Active="macOS"/>
+    <BuildModes Active="Linux"/>
     <Units>
       <Unit>
         <Filename Value="OsmosePresets.lpr"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="osmosepresets"/>
-        <UsageCount Value="41"/>
+        <UsageCount Value="74"/>
       </Unit>
       <Unit>
         <Filename Value="umainform.pas"/>
@@ -19,7 +19,7 @@
         <UnitName Value="uMainForm"/>
         <TopLine Value="398"/>
         <CursorPos X="5" Y="443"/>
-        <UsageCount Value="41"/>
+        <UsageCount Value="74"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -27,7 +27,7 @@
         <Filename Value="udata.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="uData"/>
-        <UsageCount Value="41"/>
+        <UsageCount Value="74"/>
       </Unit>
       <Unit>
         <Filename Value="usettingsform.pas"/>
@@ -36,64 +36,63 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="uSettingsForm"/>
-        <UsageCount Value="41"/>
+        <UsageCount Value="74"/>
       </Unit>
       <Unit>
         <Filename Value="usettingsdata.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="uSettingsData"/>
-        <UsageCount Value="41"/>
+        <UsageCount Value="74"/>
       </Unit>
       <Unit>
         <Filename Value="../caMidi/camidi.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="caMidi"/>
         <EditorIndex Value="1"/>
-        <CursorPos X="31" Y="8"/>
-        <UsageCount Value="41"/>
+        <CursorPos X="10" Y="17"/>
+        <UsageCount Value="74"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="../caMidi/camidiintf.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="caMidiIntf"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="3"/>
         <CursorPos Y="12"/>
-        <UsageCount Value="41"/>
+        <UsageCount Value="74"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="../camidi/camiditypes.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="caMidiTypes"/>
-        <UsageCount Value="41"/>
+        <UsageCount Value="74"/>
       </Unit>
       <Unit>
         <Filename Value="../caMidi/camidiwin.pas"/>
         <UnitName Value="caMidiWin"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="4"/>
         <TopLine Value="115"/>
         <CursorPos X="5" Y="160"/>
-        <UsageCount Value="22"/>
+        <UsageCount Value="39"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="../caMidi/camidimac.pas"/>
         <UnitName Value="caMidiMac"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="6"/>
         <TopLine Value="140"/>
-        <CursorPos X="99" Y="177"/>
-        <UsageCount Value="18"/>
+        <CursorPos X="47" Y="144"/>
+        <UsageCount Value="35"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="/Applications/Lazarus_trunk/fpcsrc/packages/winunits-base/src/mmsystem.pp"/>
         <UnitName Value="MMSystem"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="5"/>
         <TopLine Value="2583"/>
         <CursorPos X="21" Y="2588"/>
-        <UsageCount Value="18"/>
+        <UsageCount Value="35"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -102,7 +101,16 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="305"/>
         <CursorPos X="12" Y="310"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="6"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../caMidi/camidilinux.pas"/>
+        <UnitName Value="caMidiLinux"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="2"/>
+        <CursorPos Y="17"/>
+        <UsageCount Value="26"/>
+        <Loaded Value="True"/>
       </Unit>
     </Units>
     <JumpHistory HistoryIndex="29">
