@@ -121,17 +121,18 @@ begin
       VK_OEM_COMMA:   ShowSettings;
     end;
   end;
+  {$ENDIF}
+  {$IFDEF LINUX}
+  {$ENDIF}
+  {$IFDEF WINDOWS}
+  {$ENDIF}
+  // all os's
   if Shift = [] then
   begin
     case key of
       VK_S:           ToggleSearchPanel;
     end;
   end;
-  {$ENDIF}
-  //{$IFDEF LINUX}
-  //{$ENDIF}
-  //{$IFDEF WINDOWS}
-  //{$ENDIF}
 end;
 
 procedure TMainForm.FormShow(Sender: TObject);
@@ -438,6 +439,9 @@ begin
     for PresetIndex := 0 to Pred(FPresetData.PresetsByPresetName.Count) do
     begin
       Preset := TPreset(FPresetData.PresetsByPresetName[PresetIndex]);
+      //
+      // TODO: Need to filter here
+      //
       PresetTree.AddChild(PNode, Preset);
     end;
   end;
@@ -459,6 +463,9 @@ begin
       CatPtr := PresetTree.GetNodeData(PNode);
       if Preset.Category <> CatPtr^.Name then
         PNode := PresetTree.GetNextSibling(PNode);
+      //
+      // TODO: Need to filter here
+      //
       PresetTree.AddChild(PNode, Preset);
     end;
   end;

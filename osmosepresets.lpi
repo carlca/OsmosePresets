@@ -109,8 +109,7 @@
             </Options>
           </Linking>
           <Other>
-            <CustomOptions Value="-WM11.0
--vd
+            <CustomOptions Value="-vd
 -gh 
 -gl"/>
           </Other>
