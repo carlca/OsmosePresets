@@ -2,7 +2,7 @@
 <CONFIG>
   <ProjectSession>
     <Version Value="12"/>
-    <BuildModes Active="macOS aarch64"/>
+    <BuildModes Active="macOS x86_641"/>
     <Units>
       <Unit>
         <Filename Value="OsmosePresets.lpr"/>
@@ -19,7 +19,7 @@
         <UnitName Value="uMainForm"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <CursorPos X="138" Y="35"/>
+        <CursorPos X="89" Y="28"/>
         <UsageCount Value="104"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -79,7 +79,7 @@
         <EditorIndex Value="7"/>
         <TopLine Value="115"/>
         <CursorPos X="5" Y="160"/>
-        <UsageCount Value="53"/>
+        <UsageCount Value="54"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -88,7 +88,7 @@
         <EditorIndex Value="8"/>
         <TopLine Value="140"/>
         <CursorPos X="47" Y="144"/>
-        <UsageCount Value="49"/>
+        <UsageCount Value="50"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -112,7 +112,7 @@
         <UnitName Value="caMidiLinux"/>
         <EditorIndex Value="4"/>
         <CursorPos Y="43"/>
-        <UsageCount Value="40"/>
+        <UsageCount Value="41"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -147,7 +147,7 @@
         <UnitName Value="caEdit"/>
         <TopLine Value="109"/>
         <CursorPos X="13" Y="118"/>
-        <UsageCount Value="11"/>
+        <UsageCount Value="12"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -155,7 +155,7 @@
         <UnitName Value="caLibraryReg"/>
         <EditorIndex Value="2"/>
         <CursorPos Y="14"/>
-        <UsageCount Value="11"/>
+        <UsageCount Value="12"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
