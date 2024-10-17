@@ -81,7 +81,7 @@
           </Other>
         </CompilerOptions>
       </Item>
-      <Item Name="macOS x86_641">
+      <Item Name="Linux">
         <CompilerOptions>
           <Version Value="11"/>
           <Target>
