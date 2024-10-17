@@ -126,7 +126,7 @@ begin
   {$ENDIF}
   {$IFDEF WINDOWS}
   {$ENDIF}
-  // all os's
+  // all platforms
   if Shift = [] then
   begin
     case key of

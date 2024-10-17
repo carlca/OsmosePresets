@@ -2,13 +2,13 @@
 <CONFIG>
   <ProjectSession>
     <Version Value="12"/>
-    <BuildModes Active="macOS aarch64"/>
+    <BuildModes Active="Linux x86_64"/>
     <Units>
       <Unit>
         <Filename Value="OsmosePresets.lpr"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="osmosepresets"/>
-        <UsageCount Value="105"/>
+        <UsageCount Value="106"/>
       </Unit>
       <Unit>
         <Filename Value="umainform.pas"/>
@@ -20,8 +20,8 @@
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
         <TopLine Value="108"/>
-        <CursorPos X="15" Y="129"/>
-        <UsageCount Value="105"/>
+        <CursorPos X="14" Y="129"/>
+        <UsageCount Value="106"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -29,7 +29,7 @@
         <Filename Value="udata.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="uData"/>
-        <UsageCount Value="105"/>
+        <UsageCount Value="106"/>
       </Unit>
       <Unit>
         <Filename Value="usettingsform.pas"/>
@@ -40,7 +40,7 @@
         <UnitName Value="uSettingsForm"/>
         <EditorIndex Value="5"/>
         <CursorPos X="19" Y="10"/>
-        <UsageCount Value="105"/>
+        <UsageCount Value="106"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -48,7 +48,7 @@
         <Filename Value="usettingsdata.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="uSettingsData"/>
-        <UsageCount Value="105"/>
+        <UsageCount Value="106"/>
       </Unit>
       <Unit>
         <Filename Value="../caMidi/camidi.pas"/>
@@ -56,7 +56,7 @@
         <UnitName Value="caMidi"/>
         <EditorIndex Value="3"/>
         <CursorPos Y="33"/>
-        <UsageCount Value="105"/>
+        <UsageCount Value="106"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -65,14 +65,14 @@
         <UnitName Value="caMidiIntf"/>
         <EditorIndex Value="6"/>
         <CursorPos Y="12"/>
-        <UsageCount Value="105"/>
+        <UsageCount Value="106"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="../camidi/camiditypes.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="caMidiTypes"/>
-        <UsageCount Value="105"/>
+        <UsageCount Value="106"/>
       </Unit>
       <Unit>
         <Filename Value="../caMidi/camidiwin.pas"/>

@@ -81,7 +81,41 @@
           </Other>
         </CompilerOptions>
       </Item>
-      <Item Name="Linux">
+      <Item Name="Linux aarch86">
+        <CompilerOptions>
+          <Version Value="11"/>
+          <Target>
+            <Filename Value="OsmosePresets_$(BuildMode)"/>
+          </Target>
+          <SearchPaths>
+            <IncludeFiles Value="$(ProjOutDir)"/>
+            <OtherUnitFiles Value="/Applications/Lazarus_trunk/fpcsrc/packages/univint/namespaced/;../caMidi"/>
+            <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
+          </SearchPaths>
+          <CodeGeneration>
+            <TargetCPU Value="aarch64"/>
+            <TargetOS Value="linux"/>
+          </CodeGeneration>
+          <Linking>
+            <Debugging>
+              <DebugInfoType Value="dsDwarf2Set"/>
+              <UseHeaptrc Value="True"/>
+              <UseExternalDbgSyms Value="True"/>
+            </Debugging>
+            <Options>
+              <Win32>
+                <GraphicApplication Value="True"/>
+              </Win32>
+            </Options>
+          </Linking>
+          <Other>
+            <CustomOptions Value="-vd
+-gh 
+-gl"/>
+          </Other>
+        </CompilerOptions>
+      </Item>
+      <Item Name="Linux x86_64">
         <CompilerOptions>
           <Version Value="11"/>
           <Target>
