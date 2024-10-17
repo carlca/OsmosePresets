@@ -17,8 +17,8 @@ object MainForm: TMainForm
   object PresetTree: TLazVirtualStringTree
     Cursor = 63
     Left = 8
-    Height = 764
-    Top = 8
+    Height = 725
+    Top = 47
     Width = 814
     Align = alClient
     DefaultText = 'Node'
@@ -68,17 +68,17 @@ object MainForm: TMainForm
   end
   object CharacterListPanel: TPanel
     Left = 822
-    Height = 764
-    Top = 8
+    Height = 725
+    Top = 47
     Width = 170
     Align = alRight
     Caption = 'CharacterListPanel'
-    ClientHeight = 764
+    ClientHeight = 725
     ClientWidth = 170
     TabOrder = 1
     object CharacterList: TCheckListBox
       Left = 1
-      Height = 745
+      Height = 706
       Top = 18
       Width = 168
       Align = alClient
@@ -134,5 +134,53 @@ object MainForm: TMainForm
       Caption = 'Options'
       OnClick = OptionsButtonClick
     end
+  end
+  object SearchPanel: TPanel
+    Left = 8
+    Height = 35
+    Top = 8
+    Width = 984
+    Align = alTop
+    BorderWidth = 5
+    ClientHeight = 35
+    ClientWidth = 984
+    TabOrder = 3
+    Visible = False
+    object caEdit1: TcaEdit
+      Left = 6
+      Height = 23
+      Top = 6
+      Width = 972
+      AEdit.Left = 52
+      AEdit.Height = 23
+      AEdit.Top = 0
+      AEdit.Width = 920
+      AEdit.Align = alRight
+      AEdit.TabOrder = 0
+      AEdit.Text = 'Search'
+      ALabel.Left = 0
+      ALabel.Height = 23
+      ALabel.Top = 0
+      ALabel.Width = 46
+      ALabel.Align = alLeft
+      ALabel.Caption = 'Search:'
+      ALabel.Layout = tlCenter
+      Align = alClient
+      Caption = 'Search:'
+      FieldWidth = 920
+      LabelPosition = lpLeft
+      LabelSpacing = 1
+      TabOrder = 0
+      TabStop = False
+    end
+  end
+  object SpacerLabel: TLabel
+    Left = 8
+    Height = 4
+    Top = 43
+    Width = 984
+    Align = alTop
+    AutoSize = False
+    Visible = False
   end
 end

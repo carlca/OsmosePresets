@@ -5,9 +5,9 @@ unit uMainForm;
 interface
 
 uses
-  Buttons, Classes, SysUtils, Forms, Controls, Graphics, Dialogs, LResources,
-  StdCtrls, LCLType, LCLIntf, FPImage, IntfGraphics, GraphType,
-  ComCtrls, CheckLst, ExtCtrls, laz.VirtualTrees, ImgList, DbugIntf,
+  Buttons, caEdit, Classes, SysUtils, Forms, Controls, Graphics, Dialogs, LResources,
+  StdCtrls, LCLType, LCLIntf, FPImage, IntfGraphics, GraphType, ComCtrls, CheckLst,
+  ExtCtrls, laz.VirtualTrees, ImgList, DbugIntf,
   // JSON units for settings
   FPJson, JsonParser,
   // project units
@@ -20,11 +20,14 @@ type
   { TMainForm }
 
   TMainForm = class(TForm)
+    caEdit1: TcaEdit;
     CharacterList: TCheckListBox;
     CharacterListPanel: TPanel;
     CharacterListHeader: TPanel;
     CharacterListHeaderLabel: TLabel;
+    SpacerLabel: TLabel;
     OptionsButton: TSpeedButton;
+    SearchPanel: TPanel;
     ToolbarPanel: TPanel;
     PresetTree: TLazVirtualStringTree;
     procedure CharacterListClickCheck(Sender: TObject);
@@ -47,15 +50,20 @@ type
     FSettings: TSettingsData;
     FReturnPressed: boolean;
     procedure ClearCharacterList;
+    procedure EnterKeyPressed(var Key: char);
     procedure GlobalKeyUp(Sender: TObject; var Key: word; Shift: TShiftState);
     procedure LoadCategoryNodes;
     procedure LoadCharacterList;
     procedure LoadPresetNodesByPresetName;
     procedure LoadPresetNodesByCategory;
     procedure ShowSettings;
+    procedure ToggleSearchPanel;
   private
   public
   end;
+
+const
+  ENTER_KEY = #13;
 
 var
   MainForm: TMainForm;
@@ -111,6 +119,12 @@ begin
     case Key of
       VK_Q:           Close;
       VK_OEM_COMMA:   ShowSettings;
+    end;
+  end;
+  if Shift = [] then
+  begin
+    case key of
+      VK_S:           ToggleSearchPanel;
     end;
   end;
   {$ENDIF}
@@ -328,11 +342,6 @@ begin
 end;
 
 procedure TMainForm.PresetTreeKeyPress(Sender: TObject; var Key: char);
-var
-  Node: PVirtualNode;
-  Level: integer;
-  PrePtr: PPreset;
-  ExcCount: integer = 0;
 begin
   {$IFDEF DARWIN}
   if FReturnPressed then
@@ -341,26 +350,38 @@ begin
     Exit;
   end;
   {$ENDIF}
-  if Key = #13 then
+  FReturnPressed := True;
+end;
+
+procedure TMainForm.ToggleSearchPanel;
+begin
+  SearchPanel.Visible := not SearchPanel.Visible;
+  SpacerLabel.Visible := SearchPanel.Visible;
+end;
+
+procedure TMainForm.EnterKeyPressed(var Key: char);
+var
+  ExcCount: integer;
+  PrePtr: PPreset;
+  Level: integer;
+  Node: PVirtualNode;
+begin
+  Node := PresetTree.FocusedNode;
+  if Assigned(Node) then
   begin
-    Node := PresetTree.FocusedNode;
-    if Assigned(Node) then
+    Level := PresetTree.GetNodeLevel(Node);
+    if Level = 1 then
     begin
-      Level := PresetTree.GetNodeLevel(Node);
-      if Level = 1 then
-      begin
-        PrePtr := PresetTree.GetNodeData(Node);
-        if not Midi.SendCC(FSettings.DeviceIndex, 0, PrePtr^.CC0) then
-          Inc(ExcCount);
-        Sleep(200);
-        if not Midi.SendPGM(FSettings.DeviceIndex, 0, PrePtr^.PGM) then
-          Inc(ExcCount);
-        if ExcCount > 0 then
-          Key := #0;
-      end;
+      PrePtr := PresetTree.GetNodeData(Node);
+      if not Midi.SendCC(FSettings.DeviceIndex, 0, PrePtr^.CC0) then
+        Inc(ExcCount);
+      Sleep(200);
+      if not Midi.SendPGM(FSettings.DeviceIndex, 0, PrePtr^.PGM) then
+        Inc(ExcCount);
+      if ExcCount > 0 then
+        Key := #0;
     end;
   end;
-  FReturnPressed := True;
 end;
 
 procedure TMainForm.CharacterListClickCheck(Sender: TObject);

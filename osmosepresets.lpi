@@ -14,12 +14,12 @@
       <Icon Value="0"/>
     </General>
     <BuildModes>
-      <Item Name="macOS" Default="True"/>
+      <Item Name="macOS aarch64" Default="True"/>
       <Item Name="Windows">
         <CompilerOptions>
           <Version Value="11"/>
           <Target>
-            <Filename Value="OsmosePresets"/>
+            <Filename Value="OsmosePresets_$(BuildMode)"/>
           </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>
@@ -28,7 +28,7 @@
           </SearchPaths>
           <CodeGeneration>
             <TargetCPU Value="x86_64"/>
-            <TargetOS Value="linux"/>
+            <TargetOS Value="win64"/>
           </CodeGeneration>
           <Linking>
             <Debugging>
@@ -46,34 +46,38 @@
           </Other>
         </CompilerOptions>
       </Item>
-      <Item Name="Linux">
+      <Item Name="macOS x86_64">
         <CompilerOptions>
           <Version Value="11"/>
           <Target>
-            <Filename Value="OsmosePresets"/>
+            <Filename Value="OsmosePresets_$(BuildMode)"/>
           </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>
-            <OtherUnitFiles Value="../caMidi"/>
+            <OtherUnitFiles Value="/Applications/Lazarus_trunk/fpcsrc/packages/univint/namespaced/;../caMidi"/>
             <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
           </SearchPaths>
           <CodeGeneration>
             <TargetCPU Value="x86_64"/>
-            <TargetOS Value="linux"/>
+            <TargetOS Value="darwin"/>
           </CodeGeneration>
           <Linking>
             <Debugging>
-              <RunWithoutDebug Value="True"/>
               <DebugInfoType Value="dsDwarf2Set"/>
               <UseHeaptrc Value="True"/>
               <UseExternalDbgSyms Value="True"/>
             </Debugging>
+            <Options>
+              <Win32>
+                <GraphicApplication Value="True"/>
+              </Win32>
+            </Options>
           </Linking>
           <Other>
-            <CustomOptions Value="-vd
+            <CustomOptions Value="-WM11.0
+-vd
 -gh 
--glh
--Xg"/>
+-gl"/>
           </Other>
         </CompilerOptions>
       </Item>
@@ -86,6 +90,9 @@
       <FormatVersion Value="2"/>
     </RunParams>
     <RequiredPackages>
+      <Item>
+        <PackageName Value="calibrarydsgn"/>
+      </Item>
       <Item>
         <PackageName Value="calibraryrun"/>
       </Item>
@@ -148,13 +155,17 @@
   <CompilerOptions>
     <Version Value="11"/>
     <Target>
-      <Filename Value="OsmosePresets"/>
+      <Filename Value="OsmosePresets_$(BuildMode)"/>
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
       <OtherUnitFiles Value="/Applications/Lazarus_trunk/fpcsrc/packages/univint/namespaced/;../caMidi"/>
       <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
+    <CodeGeneration>
+      <TargetCPU Value="aarch64"/>
+      <TargetOS Value="darwin"/>
+    </CodeGeneration>
     <Linking>
       <Debugging>
         <DebugInfoType Value="dsDwarf2Set"/>
