@@ -13,14 +13,14 @@ uses
   // project units
   uData, uSettingsForm, uSettingsData,
   // ca units
-  caDbg, caMidi, caMidiIntf, caMidiTypes;
+  caDbg, caUtils, caMidi, caMidiIntf, caMidiTypes;
 
 type
 
   { TMainForm }
 
   TMainForm = class(TForm)
-    caEdit1: TcaEdit;
+    SearchEdit: TcaEdit;
     CharacterList: TCheckListBox;
     CharacterListPanel: TPanel;
     CharacterListHeader: TPanel;
@@ -30,6 +30,7 @@ type
     SearchPanel: TPanel;
     ToolbarPanel: TPanel;
     PresetTree: TLazVirtualStringTree;
+    procedure caEditChange(Sender:TObject);
     procedure CharacterListClickCheck(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -41,7 +42,7 @@ type
     procedure PresetTreeCollapsing(Sender: TBaseVirtualTree; Node: PVirtualNode; var Allowed: boolean);
     procedure PresetTreeExpanding(Sender: TBaseVirtualTree; Node: PVirtualNode; var Allowed: boolean);
     procedure PresetTreeFreeNode(Sender: TBaseVirtualTree; Node: PVirtualNode);
-    procedure PresetTreeGetNodeDataSize(Sender: TBaseVirtualTree; var NodeDataSize: Integer);
+    procedure PresetTreeGetNodeDataSize(Sender: TBaseVirtualTree; var NodeDataSize: integer);
     procedure PresetTreeGetText(Sender: TBaseVirtualTree; Node: PVirtualNode; Column: TColumnIndex; TextType: TVSTTextType; var CellText: string);
     procedure PresetTreeKeyPress(Sender: TObject; var Key: char);
     procedure PresetTreeKeyUp(Sender: TObject; var Key: word; Shift: TShiftState);
@@ -309,7 +310,7 @@ begin
   end;
 end;
 
-procedure TMainForm.PresetTreeGetNodeDataSize(Sender: TBaseVirtualTree; var NodeDataSize: Integer);
+procedure TMainForm.PresetTreeGetNodeDataSize(Sender: TBaseVirtualTree; var NodeDataSize: integer);
 begin
   NodeDataSize := SizeOf(PPreset);
 end;
@@ -362,7 +363,7 @@ end;
 
 procedure TMainForm.EnterKeyPressed(var Key: char);
 var
-  ExcCount: integer;
+  ExcCount: integer = 0;
   PrePtr: PPreset;
   Level: integer;
   Node: PVirtualNode;
@@ -389,6 +390,12 @@ procedure TMainForm.CharacterListClickCheck(Sender: TObject);
 begin
 end;
 
+procedure TMainForm.caEditChange(Sender:TObject);
+begin
+  LoadPresetNodesByPresetName;
+  LoadPresetNodesByCategory;
+end;
+
 procedure TMainForm.FormActivate(Sender: TObject);
 begin
   ActiveControl := PresetTree;
@@ -413,7 +420,7 @@ end;
 
 procedure TMainForm.LoadCategoryNodes;
 var
-  Index: Integer;
+  Index: integer;
 begin
   for Index := 0 to Pred(FPresetData.Categories.Count) do
     PresetTree.AddChild(nil, FPresetData.Categories[Index]);
@@ -430,7 +437,9 @@ var
   Preset: TPreset;
   PNode: PVirtualNode;
   CatPtr: PCategory;
-  PresetIndex: Integer;
+  PresetIndex: integer;
+  ShouldAdd: boolean;
+  SearchKey: string;
 begin
   PNode := PresetTree.GetFirst;
   CatPtr := PresetTree.GetNodeData(PNode);
@@ -439,10 +448,20 @@ begin
     for PresetIndex := 0 to Pred(FPresetData.PresetsByPresetName.Count) do
     begin
       Preset := TPreset(FPresetData.PresetsByPresetName[PresetIndex]);
-      //
-      // TODO: Need to filter here
-      //
-      PresetTree.AddChild(PNode, Preset);
+      //// TODO: Need to filter here
+      //SearchKey := SearchEdit.AEdit.Text;
+      //if SearchKey <> '' then
+      //begin
+      //  //if Preset.PresetName[1] = 'j' then
+      //  //begin
+      //  //  Pass;
+      //  //end;
+      //  ShouldAdd := Pos(SearchKey, Preset.PresetName) > 0;
+      //end
+      //else
+      //  ShouldAdd := True;
+      //if ShouldAdd then
+        PresetTree.AddChild(PNode, Preset);
     end;
   end;
 end;
@@ -452,7 +471,9 @@ var
   Preset: TPreset;
   PNode: PVirtualNode;
   CatPtr: PCategory;
-  PresetIndex: Integer;
+  PresetIndex: integer;
+  SearchKey: string;
+  ShouldAdd: boolean;
 begin
   PNode := PresetTree.GetFirst;
   if Assigned(PNode) then
@@ -463,10 +484,14 @@ begin
       CatPtr := PresetTree.GetNodeData(PNode);
       if Preset.Category <> CatPtr^.Name then
         PNode := PresetTree.GetNextSibling(PNode);
-      //
-      // TODO: Need to filter here
-      //
-      PresetTree.AddChild(PNode, Preset);
+//
+//      SearchKey := SearchEdit.AEdit.Text;
+//      if SearchKey <> '' then
+//        ShouldAdd := Pos(SearchKey, Preset.PresetName) > 0
+//      else
+//        ShouldAdd := True;
+//      if ShouldAdd then
+        PresetTree.AddChild(PNode, Preset);
     end;
   end;
 end;

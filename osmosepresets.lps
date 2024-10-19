@@ -2,13 +2,13 @@
 <CONFIG>
   <ProjectSession>
     <Version Value="12"/>
-    <BuildModes Active="Linux x86_64"/>
+    <BuildModes Active="macOS aarch64"/>
     <Units>
       <Unit>
         <Filename Value="OsmosePresets.lpr"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="osmosepresets"/>
-        <UsageCount Value="106"/>
+        <UsageCount Value="107"/>
       </Unit>
       <Unit>
         <Filename Value="umainform.pas"/>
@@ -19,9 +19,9 @@
         <UnitName Value="uMainForm"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="108"/>
-        <CursorPos X="14" Y="129"/>
-        <UsageCount Value="106"/>
+        <TopLine Value="128"/>
+        <CursorPos X="73" Y="142"/>
+        <UsageCount Value="107"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -29,7 +29,7 @@
         <Filename Value="udata.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="uData"/>
-        <UsageCount Value="106"/>
+        <UsageCount Value="107"/>
       </Unit>
       <Unit>
         <Filename Value="usettingsform.pas"/>
@@ -40,7 +40,7 @@
         <UnitName Value="uSettingsForm"/>
         <EditorIndex Value="5"/>
         <CursorPos X="19" Y="10"/>
-        <UsageCount Value="106"/>
+        <UsageCount Value="107"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -48,7 +48,7 @@
         <Filename Value="usettingsdata.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="uSettingsData"/>
-        <UsageCount Value="106"/>
+        <UsageCount Value="107"/>
       </Unit>
       <Unit>
         <Filename Value="../caMidi/camidi.pas"/>
@@ -56,7 +56,7 @@
         <UnitName Value="caMidi"/>
         <EditorIndex Value="3"/>
         <CursorPos Y="33"/>
-        <UsageCount Value="106"/>
+        <UsageCount Value="107"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -65,14 +65,14 @@
         <UnitName Value="caMidiIntf"/>
         <EditorIndex Value="6"/>
         <CursorPos Y="12"/>
-        <UsageCount Value="106"/>
+        <UsageCount Value="107"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="../camidi/camiditypes.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="caMidiTypes"/>
-        <UsageCount Value="106"/>
+        <UsageCount Value="107"/>
       </Unit>
       <Unit>
         <Filename Value="../caMidi/camidiwin.pas"/>
@@ -80,7 +80,7 @@
         <EditorIndex Value="7"/>
         <TopLine Value="115"/>
         <CursorPos X="5" Y="160"/>
-        <UsageCount Value="54"/>
+        <UsageCount Value="55"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -89,7 +89,7 @@
         <EditorIndex Value="8"/>
         <TopLine Value="140"/>
         <CursorPos X="47" Y="144"/>
-        <UsageCount Value="50"/>
+        <UsageCount Value="51"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -113,7 +113,7 @@
         <UnitName Value="caMidiLinux"/>
         <EditorIndex Value="4"/>
         <CursorPos Y="43"/>
-        <UsageCount Value="41"/>
+        <UsageCount Value="42"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -148,7 +148,7 @@
         <UnitName Value="caEdit"/>
         <TopLine Value="109"/>
         <CursorPos X="13" Y="118"/>
-        <UsageCount Value="12"/>
+        <UsageCount Value="13"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -156,7 +156,7 @@
         <UnitName Value="caLibraryReg"/>
         <EditorIndex Value="1"/>
         <CursorPos Y="14"/>
-        <UsageCount Value="12"/>
+        <UsageCount Value="13"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -164,12 +164,15 @@
         <EditorIndex Value="-1"/>
         <UsageCount Value="10"/>
       </Unit>
+      <Unit>
+        <Filename Value="/Applications/Lazarus_aarch64/lazarus/lcl/include/control.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="3986"/>
+        <CursorPos X="46" Y="3999"/>
+        <UsageCount Value="10"/>
+      </Unit>
     </Units>
     <JumpHistory HistoryIndex="29">
-      <Position>
-        <Filename Value="umainform.pas"/>
-        <Caret Line="410" Column="26" TopLine="403"/>
-      </Position>
       <Position>
         <Filename Value="../caLibrary/caedit.pas"/>
         <Caret Line="172" Column="38" TopLine="154"/>
@@ -282,10 +285,21 @@
         <Filename Value="umainform.pas"/>
         <Caret Line="60" Column="29" TopLine="47"/>
       </Position>
+      <Position>
+        <Filename Value="umainform.pas"/>
+        <Caret Line="150" Column="109" TopLine="108"/>
+      </Position>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>
       <Modes ActiveMode=""/>
     </RunParams>
   </ProjectSession>
+  <Debugging>
+    <Watches>
+      <Item>
+        <Expression Value="Self.Name"/>
+      </Item>
+    </Watches>
+  </Debugging>
 </CONFIG>

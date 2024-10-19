@@ -146,7 +146,7 @@ object MainForm: TMainForm
     ClientWidth = 984
     TabOrder = 3
     Visible = False
-    object caEdit1: TcaEdit
+    object SearchEdit: TcaEdit
       Left = 6
       Height = 23
       Top = 6
@@ -157,7 +157,7 @@ object MainForm: TMainForm
       AEdit.Width = 920
       AEdit.Align = alRight
       AEdit.TabOrder = 0
-      AEdit.Text = 'Search'
+      AEdit.OnChange = caEditChange
       ALabel.Left = 0
       ALabel.Height = 23
       ALabel.Top = 0
