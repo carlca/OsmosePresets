@@ -445,22 +445,17 @@ begin
   CatPtr := PresetTree.GetNodeData(PNode);
   if CatPtr^.Name = ALL_CATEGORIES then
   begin
+    PresetTree.DeleteChildren(PNode);
     for PresetIndex := 0 to Pred(FPresetData.PresetsByPresetName.Count) do
     begin
       Preset := TPreset(FPresetData.PresetsByPresetName[PresetIndex]);
       //// TODO: Need to filter here
-      //SearchKey := SearchEdit.AEdit.Text;
-      //if SearchKey <> '' then
-      //begin
-      //  //if Preset.PresetName[1] = 'j' then
-      //  //begin
-      //  //  Pass;
-      //  //end;
-      //  ShouldAdd := Pos(SearchKey, Preset.PresetName) > 0;
-      //end
-      //else
-      //  ShouldAdd := True;
-      //if ShouldAdd then
+      SearchKey := SearchEdit.AEdit.Text;
+      if SearchKey <> '' then
+        ShouldAdd := Pos(SearchKey, Preset.PresetName) > 0
+      else
+        ShouldAdd := True;
+      if ShouldAdd then
         PresetTree.AddChild(PNode, Preset);
     end;
   end;
@@ -482,15 +477,20 @@ begin
     begin
       Preset := TPreset(FPresetData.PresetsByCategory[PresetIndex]);
       CatPtr := PresetTree.GetNodeData(PNode);
+
       if Preset.Category <> CatPtr^.Name then
-        PNode := PresetTree.GetNextSibling(PNode);
-//
-//      SearchKey := SearchEdit.AEdit.Text;
-//      if SearchKey <> '' then
-//        ShouldAdd := Pos(SearchKey, Preset.PresetName) > 0
-//      else
-//        ShouldAdd := True;
-//      if ShouldAdd then
+        begin
+          PNode := PresetTree.GetNextSibling(PNode);
+          //if CatPtr^.Name <> ALL_CATEGORIES then
+            PresetTree.DeleteChildren(PNode);
+        end;
+
+      SearchKey := SearchEdit.AEdit.Text;
+      if SearchKey <> '' then
+        ShouldAdd := Pos(SearchKey, Preset.PresetName) > 0
+      else
+        ShouldAdd := True;
+      if ShouldAdd then
         PresetTree.AddChild(PNode, Preset);
     end;
   end;
