@@ -18,6 +18,8 @@ uses
   uSettingsForm,
   uSettingsData;
 
+{$R *.res}
+
 begin
   {$IFDEF DEBUG}
   // Assuming your build mode sets -dDEBUG in Project Options/Other when defining -gh

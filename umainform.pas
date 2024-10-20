@@ -7,7 +7,7 @@ interface
 uses
   Buttons, caEdit, Classes, SysUtils, Forms, Controls, Graphics, Dialogs, LResources,
   StdCtrls, LCLType, LCLIntf, FPImage, IntfGraphics, GraphType, ComCtrls, CheckLst,
-  ExtCtrls, laz.VirtualTrees, ImgList, DbugIntf,
+  ExtCtrls, laz.VirtualTrees, ImgList, DbugIntf, FileInfo,
   // JSON units for settings
   FPJson, JsonParser,
   // project units
@@ -52,10 +52,10 @@ type
     FSettings: TSettingsData;
     FReturnPressed: boolean;
     function GetShouldAdd(const PNode: PVirtualNode; const Preset: TPreset; SearchKey: string): boolean;
+    function GetCaptionWithVersion: string;
     procedure ClearCharacterList;
     procedure DisplaySearchKey(SearchKey: string);
     procedure EnterKeyPressed(var Key: char);
-    procedure FocusFirstMatchingPreset;
     procedure GlobalKeyUp(Sender: TObject; var Key: word; Shift: TShiftState);
     procedure LoadCategoryNodes;
     procedure LoadCharacterList;
@@ -68,9 +68,11 @@ type
   end;
 
 const
-  ENTER_KEY = #13;
-  CATEGORY_LEVEL = 0;
-  PRESET_LEVEL = 1;
+  APP_NAME        = 'OsmosePresets';
+  APP_STATUS      = 'alpha';
+  ENTER_KEY       = #13;
+  CATEGORY_LEVEL  = 0;
+  PRESET_LEVEL    = 1;
 
 var
   MainForm: TMainForm;
@@ -86,6 +88,7 @@ begin
   FSettings.Read;
   PresetTree.OnKeyUp := @GlobalKeyUp;
   CharacterList.OnKeyUp := @GlobalKeyUp;
+  SearchEdit.AEdit.OnKeyUp := @GlobalKeyUp;
   FPresetData := TPresetData.Create;
 end;
 
@@ -153,6 +156,28 @@ begin
   {$ENDIF}
 end;
 
+function TMainForm.GetCaptionWithVersion: string;
+var
+
+  Version: TProgramVersion;
+  VersionStr: string;
+  OSName: string;
+begin
+  VersionStr := '';
+  if GetProgramVersion(Version) then
+    VersionStr := Format(' v%d.%d.%d.%d', [Version.Major, Version.Minor, Version.Revision, Version.Build]);
+  {$IFDEF DARWIN}
+  OSName := 'macOS';
+  {$ENDIF}
+  {$IFDEF LINUX}
+  OSName := 'Linux';
+  {$ENDIF}
+  {$IFDEF WINDOWS}
+  OSName := 'Windows';
+  {$ENDIF}
+  Result := APP_NAME + ' ' + VersionStr + ' ' + APP_STATUS + ' for ' + OSName;
+end;
+
 procedure TMainForm.FormShow(Sender: TObject);
 begin
   {$IFDEF DARWIN}
@@ -163,15 +188,7 @@ begin
   LoadPresetNodesByCategory;
   CharacterList.Color := PresetTree.Color;
   CharacterListHeaderLabel.Color := clBtnFace;
-  {$IFDEF DARWIN}
-  Caption := 'OsmosePresets 0.2.0 alpha - for macOS';
-  {$ENDIF}
-  {$IFDEF LINUX}
-  Caption := 'OsmosePresets 0.2.0 alpha - for Linux';
-  {$ENDIF}
-  {$IFDEF WINDOWS}
-  Caption := 'OsmosePresets 0.2.0 alpha - for Windows';
-  {$ENDIF}
+  Caption := GetCaptionWithVersion;
   PresetTree.Header.Height := 19;
 end;
 
@@ -383,7 +400,7 @@ begin
   if SearchPanel.Visible then
     SearchEdit.AEdit.SetFocus
   else
-    FocusFirstMatchingPreset;
+    PresetTree.SetFocus;
 end;
 
 procedure TMainForm.EnterKeyPressed(var Key: char);
@@ -402,7 +419,7 @@ begin
       PrePtr := PresetTree.GetNodeData(Node);
       if not Midi.SendCC(FSettings.DeviceIndex, 0, PrePtr^.CC0) then
         Inc(ExcCount);
-      Sleep(200);
+      Sleep(400);
       Application.ProcessMessages;
       if not Midi.SendPGM(FSettings.DeviceIndex, 0, PrePtr^.PGM) then
         Inc(ExcCount);
@@ -410,11 +427,6 @@ begin
         Key := #0;
     end;
   end;
-end;
-
-procedure TMainForm.FocusFirstMatchingPreset;
-begin
-
 end;
 
 procedure TMainForm.CharacterListClickCheck(Sender: TObject);
@@ -436,7 +448,6 @@ procedure TMainForm.caEditKeyPress(Sender: TObject; var Key: char);
 begin
   if Key = ENTER_KEY then
   begin
-    FocusFirstMatchingPreset;
   end;
 end;
 

@@ -13,6 +13,15 @@
       </XPManifest>
       <Icon Value="0"/>
     </General>
+    <VersionInfo>
+      <UseVersionInfo Value="True"/>
+      <AutoIncrementBuild Value="True"/>
+      <MinorVersionNr Value="2"/>
+      <RevisionNr Value="2"/>
+      <BuildNr Value="12"/>
+      <Language Value="0809"/>
+      <Attributes pvaPreRelease="True"/>
+    </VersionInfo>
     <BuildModes>
       <Item Name="macOS aarch64" Default="True"/>
       <Item Name="Windows">
@@ -227,7 +236,7 @@
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
-      <OtherUnitFiles Value="/Applications/Lazarus_trunk/fpcsrc/packages/univint/namespaced/;../caMidi"/>
+      <OtherUnitFiles Value="../caMidi"/>
       <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
     <CodeGeneration>
