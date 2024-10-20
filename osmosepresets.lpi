@@ -247,6 +247,9 @@
       </Options>
     </Linking>
     <Other>
+      <CompilerMessages>
+        <IgnoredMessages idx5023="True"/>
+      </CompilerMessages>
       <CustomOptions Value="-WM11.0
 -vd
 -gh 

@@ -158,6 +158,7 @@ object MainForm: TMainForm
       AEdit.Align = alRight
       AEdit.TabOrder = 0
       AEdit.OnChange = caEditChange
+      AEdit.OnKeyPress = caEditKeyPress
       ALabel.Left = 0
       ALabel.Height = 23
       ALabel.Top = 0

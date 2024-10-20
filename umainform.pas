@@ -31,6 +31,7 @@ type
     ToolbarPanel: TPanel;
     PresetTree: TLazVirtualStringTree;
     procedure caEditChange(Sender: TObject);
+    procedure caEditKeyPress(Sender: TObject; var Key: char);
     procedure CharacterListClickCheck(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -52,7 +53,9 @@ type
     FReturnPressed: boolean;
     function GetShouldAdd(const PNode: PVirtualNode; const Preset: TPreset; SearchKey: string): boolean;
     procedure ClearCharacterList;
+    procedure DisplaySearchKey(SearchKey: string);
     procedure EnterKeyPressed(var Key: char);
+    procedure FocusFirstMatchingPreset;
     procedure GlobalKeyUp(Sender: TObject; var Key: word; Shift: TShiftState);
     procedure LoadCategoryNodes;
     procedure LoadCharacterList;
@@ -66,6 +69,8 @@ type
 
 const
   ENTER_KEY = #13;
+  CATEGORY_LEVEL = 0;
+  PRESET_LEVEL = 1;
 
 var
   MainForm: TMainForm;
@@ -121,20 +126,31 @@ begin
     case Key of
       VK_Q:           Close;
       VK_OEM_COMMA:   ShowSettings;
+      VK_S:           ToggleSearchPanel;
+      VK_F:           ToggleSearchPanel;
     end;
   end;
   {$ENDIF}
   {$IFDEF LINUX}
-  {$ENDIF}
-  {$IFDEF WINDOWS}
-  {$ENDIF}
-  // all platforms
-  if Shift = [] then
+  if Shift = [ssCtrl] then
   begin
-    case key of
-      VK_S: ToggleSearchPanel;
+    case Key of
+      VK_Q:           Close;
+      VK_S:           ToggleSearchPanel;
+      VK_F:           ToggleSearchPanel;
     end;
   end;
+  {$ENDIF}
+  {$IFDEF WINDOWS}
+  if Shift = [ssCtrl] then
+  begin
+    case Key of
+      VK_Q:           Close;
+      VK_S:           ToggleSearchPanel;
+      VK_F:           ToggleSearchPanel;
+    end;
+  end;
+  {$ENDIF}
 end;
 
 procedure TMainForm.FormShow(Sender: TObject);
@@ -243,7 +259,7 @@ var
 
 begin
   Level := PresetTree.GetNodeLevel(Node);
-  if Level = 0 then
+  if Level = CATEGORY_LEVEL then
   begin
     // Set state flags
     IsSelected := PresetTree.Selected[Node] and PresetTree.Focused;
@@ -254,7 +270,7 @@ begin
     DrawArrow(TargetCanvas, IsExpanded, IsSelected, IsFocused);
     EraseCategoryOutline(TargetCanvas, IsSelected, IsFocused);
   end;
-  if Level = 1 then
+  if Level = PRESET_LEVEL then
   begin
     IsSelected := PresetTree.Selected[Node] and PresetTree.Focused;
     IsFocusedNode := Node = PresetTree.FocusedNode;
@@ -274,7 +290,7 @@ var
   CatPtr: PCategory;
 begin
   Level := PresetTree.GetNodeLevel(Node);
-  if Level = 0 then
+  if Level = CATEGORY_LEVEL then
   begin
     RootNode := PresetTree.GetFirst;
     while Assigned(RootNode) do
@@ -297,7 +313,7 @@ var
   Level: cardinal;
 begin
   Level := PresetTree.GetNodeLevel(Node);
-  if Level = 0 then
+  if Level = CATEGORY_LEVEL then
   begin
     CatPtr := PresetTree.GetNodeData(Node);
     if Assigned(CatPtr^) then
@@ -323,7 +339,7 @@ var
   Level: cardinal;
 begin
   Level := PresetTree.GetNodeLevel(Node);
-  if Level = 0 then
+  if Level = CATEGORY_LEVEL then
   begin
     CatPtr := PresetTree.GetNodeData(Node);
     if Column = 0 then
@@ -346,20 +362,28 @@ end;
 
 procedure TMainForm.PresetTreeKeyPress(Sender: TObject; var Key: char);
 begin
-  {$IFDEF DARWIN}
-  if FReturnPressed then
+  if Key = ENTER_KEY then
   begin
-    FReturnPressed := False;
-    Exit;
+    {$IFDEF DARWIN}
+    if FReturnPressed then
+    begin
+      FReturnPressed := False;
+      Exit;
+    end;
+    {$ENDIF}
+    EnterKeyPressed(Key);
+    FReturnPressed := True;
   end;
-  {$ENDIF}
-  FReturnPressed := True;
 end;
 
 procedure TMainForm.ToggleSearchPanel;
 begin
   SearchPanel.Visible := not SearchPanel.Visible;
   SpacerLabel.Visible := SearchPanel.Visible;
+  if SearchPanel.Visible then
+    SearchEdit.AEdit.SetFocus
+  else
+    FocusFirstMatchingPreset;
 end;
 
 procedure TMainForm.EnterKeyPressed(var Key: char);
@@ -373,12 +397,13 @@ begin
   if Assigned(Node) then
   begin
     Level := PresetTree.GetNodeLevel(Node);
-    if Level = 1 then
+    if Level = PRESET_LEVEL then
     begin
       PrePtr := PresetTree.GetNodeData(Node);
       if not Midi.SendCC(FSettings.DeviceIndex, 0, PrePtr^.CC0) then
         Inc(ExcCount);
       Sleep(200);
+      Application.ProcessMessages;
       if not Midi.SendPGM(FSettings.DeviceIndex, 0, PrePtr^.PGM) then
         Inc(ExcCount);
       if ExcCount > 0 then
@@ -387,14 +412,32 @@ begin
   end;
 end;
 
+procedure TMainForm.FocusFirstMatchingPreset;
+begin
+
+end;
+
 procedure TMainForm.CharacterListClickCheck(Sender: TObject);
 begin
 end;
 
 procedure TMainForm.caEditChange(Sender: TObject);
 begin
+  LoadCategoryNodes;
   LoadPresetNodesByPresetName;
   LoadPresetNodesByCategory;
+  if SearchEdit.AEdit.Text <> '' then
+  begin
+    DisplaySearchKey(SearchEdit.AEdit.Text);
+  end;
+end;
+
+procedure TMainForm.caEditKeyPress(Sender: TObject; var Key: char);
+begin
+  if Key = ENTER_KEY then
+  begin
+    FocusFirstMatchingPreset;
+  end;
 end;
 
 procedure TMainForm.FormActivate(Sender: TObject);
@@ -419,10 +462,29 @@ begin
   CharacterList.Items.Clear;
 end;
 
+procedure TMainForm.DisplaySearchKey(SearchKey: string);
+var
+  Node: PVirtualNode;
+  CatPtr: PCategory;
+begin
+  Node := PresetTree.GetFirst;
+  CatPtr := PresetTree.GetNodeData(Node);
+  if CatPtr^.Name = ALL_CATEGORIES then
+  begin
+    Node := PresetTree.GetFirstChild(Node);
+    if Assigned(Node) then
+    begin
+      PresetTree.Selected[Node] := True;
+      PresetTree.IsVisible[Node] := PresetTree.HasChildren[Node];
+    end;
+  end;
+end;
+
 procedure TMainForm.LoadCategoryNodes;
 var
   Index: integer;
 begin
+  PresetTree.Clear;
   for Index := 0 to Pred(FPresetData.Categories.Count) do
     PresetTree.AddChild(nil, FPresetData.Categories[Index]);
 end;
@@ -444,23 +506,23 @@ end;
 procedure TMainForm.LoadPresetNodesByPresetName;
 var
   Preset: TPreset;
-  PNode: PVirtualNode;
+  Node: PVirtualNode;
   CatPtr: PCategory;
   PresetIndex: integer;
 begin
-  PNode := PresetTree.GetFirst;
-  CatPtr := PresetTree.GetNodeData(PNode);
+  Node := PresetTree.GetFirst;
+  CatPtr := PresetTree.GetNodeData(Node);
   if CatPtr^.Name = ALL_CATEGORIES then
   begin
     // this only deals with the first node in the tree, the "all" node
-    PresetTree.DeleteChildren(PNode);
+    PresetTree.DeleteChildren(Node);
     for PresetIndex := 0 to Pred(FPresetData.PresetsByPresetName.Count) do
     begin
       // all presets considered
       Preset := TPreset(FPresetData.PresetsByPresetName[PresetIndex]);
       // if no search then add node, otherwise check search
-      if GetShouldAdd(PNode, Preset, SearchEdit.AEdit.Text) then
-        PresetTree.AddChild(PNode, Preset);
+      if GetShouldAdd(Node, Preset, SearchEdit.AEdit.Text) then
+        PresetTree.AddChild(Node, Preset);
     end;
   end;
 end;
@@ -468,30 +530,34 @@ end;
 procedure TMainForm.LoadPresetNodesByCategory;
 var
   Preset: TPreset;
-  PNode: PVirtualNode;
+  Node, NextNode: PVirtualNode;
   CatPtr: PCategory;
   PresetIndex: integer;
-  SearchKey: string;
-  ShouldAdd: boolean;
 begin
-  PNode := PresetTree.GetFirst;
-  if Assigned(PNode) then
+  Node := PresetTree.GetFirst;
+  if Assigned(Node) then
   begin
     // by having the presets sorted by category, we can advance through the category nodes safely
     for PresetIndex := 0 to Pred(FPresetData.PresetsByCategory.Count) do
     begin
       Preset := TPreset(FPresetData.PresetsByCategory[PresetIndex]);
-      CatPtr := PresetTree.GetNodeData(PNode);
+      CatPtr := PresetTree.GetNodeData(Node);
       // advances to next category node when the preset category changes
-      // implicitly skips the ALL_CATEGORIES pnode
-      if Preset.Category <> CatPtr^.Name then
+      // implicitly skips the ALL_CATEGORIES Node
+      if Assigned(CatPtr) and (Preset.Category <> CatPtr^.Name) then
       begin
-        PNode := PresetTree.GetNextSibling(PNode);
-        PresetTree.DeleteChildren(PNode);
+        // save next node
+        NextNode := PresetTree.GetNextSibling(Node);
+        // delete any categories with no added preset children
+        if not Assigned(PresetTree.GetFirstChild(Node)) then
+          PresetTree.DeleteNode(Node);
+        // advance to next category node
+        Node := NextNode;
+        PresetTree.DeleteChildren(Node);
       end;
       // if no search then add node, otherwise check search
-      if GetShouldAdd(PNode, Preset, SearchEdit.AEdit.Text) then
-        PresetTree.AddChild(PNode, Preset);
+      if GetShouldAdd(Node, Preset, SearchEdit.AEdit.Text) then
+        PresetTree.AddChild(Node, Preset);
     end;
   end;
 end;
