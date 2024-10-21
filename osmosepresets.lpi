@@ -18,7 +18,7 @@
       <AutoIncrementBuild Value="True"/>
       <MinorVersionNr Value="2"/>
       <RevisionNr Value="2"/>
-      <BuildNr Value="38"/>
+      <BuildNr Value="47"/>
       <Language Value="0809"/>
       <Attributes pvaPreRelease="True"/>
     </VersionInfo>
@@ -265,6 +265,7 @@
 -gl"/>
       <ExecuteAfter>
         <Command Value="./post_build.sh"/>
+        <CompileReasons Run="False"/>
       </ExecuteAfter>
     </Other>
   </CompilerOptions>

@@ -46,7 +46,6 @@ type
     procedure PresetTreeGetNodeDataSize(Sender: TBaseVirtualTree; var NodeDataSize: integer);
     procedure PresetTreeGetText(Sender: TBaseVirtualTree; Node: PVirtualNode; Column: TColumnIndex; TextType: TVSTTextType; var CellText: string);
     procedure PresetTreeKeyPress(Sender: TObject; var Key: char);
-    procedure PresetTreeKeyUp(Sender: TObject; var Key: word; Shift: TShiftState);
   private
     FPresetData: TPresetData;
     FSettings: TSettingsData;
@@ -54,7 +53,6 @@ type
     function GetShouldAdd(const PNode: PVirtualNode; const Preset: TPreset; SearchKey: string): boolean;
     function GetCaptionWithVersion: string;
     procedure ClearCharacterList;
-    procedure DisplaySearchKey(SearchKey: string);
     procedure EnterKeyPressed(var Key: char);
     procedure GlobalKeyUp(Sender: TObject; var Key: word; Shift: TShiftState);
     procedure LoadCategoryNodes;
@@ -445,10 +443,6 @@ begin
   LoadCategoryNodes;
   LoadPresetNodesByPresetName;
   LoadPresetNodesByCategory;
-  if SearchEdit.AEdit.Text <> '' then
-  begin
-    DisplaySearchKey(SearchEdit.AEdit.Text);
-  end;
 end;
 
 procedure TMainForm.caEditKeyPress(Sender: TObject; var Key: char);
@@ -464,38 +458,11 @@ begin
   PresetTree.SetFocus;
   PresetTree.Selected[PresetTree.GetFirst] := True;
   PresetTree.TreeOptions.PaintOptions := PresetTree.TreeOptions.PaintOptions - [toShowHorzGridLines, toShowVertGridLines];
-  //PresetTree.Colors.FocusedSelectionColor := clNone;
-  //PresetTree.Colors.FocusedSelectionBorderColor := clNone;
-  //PresetTree.FocusedColumn := 0;
-end;
-
-procedure TMainForm.PresetTreeKeyUp(Sender: TObject; var Key: word; Shift: TShiftState);
-begin
-  //db(Key);
-  //db(Shift);
 end;
 
 procedure TMainForm.ClearCharacterList;
 begin
   CharacterList.Items.Clear;
-end;
-
-procedure TMainForm.DisplaySearchKey(SearchKey: string);
-var
-  Node: PVirtualNode;
-  CatPtr: PCategory;
-begin
-  Node := PresetTree.GetFirst;
-  CatPtr := PresetTree.GetNodeData(Node);
-  if CatPtr^.Name = ALL_CATEGORIES then
-  begin
-    Node := PresetTree.GetFirstChild(Node);
-    if Assigned(Node) then
-    begin
-      PresetTree.Selected[Node] := True;
-      PresetTree.IsVisible[Node] := PresetTree.HasChildren[Node];
-    end;
-  end;
 end;
 
 procedure TMainForm.LoadCategoryNodes;
@@ -540,7 +507,13 @@ begin
       Preset := TPreset(FPresetData.PresetsByPresetName[PresetIndex]);
       // if no search then add node, otherwise check search
       if GetShouldAdd(Node, Preset, SearchEdit.AEdit.Text) then
+      begin
+        if Preset.PresetName.Contains('jenny choir') then
+        begin
+          Pass;     // proof that 'jenny choir' is being added
+        end;
         PresetTree.AddChild(Node, Preset);
+      end;
     end;
   end;
 end;
@@ -575,7 +548,13 @@ begin
       end;
       // if no search then add node, otherwise check search
       if GetShouldAdd(Node, Preset, SearchEdit.AEdit.Text) then
+      begin
+        if Preset.PresetName.Contains('jenny choir') then
+        begin
+          Pass;
+        end;
         PresetTree.AddChild(Node, Preset);
+      end;
     end;
   end;
 end;

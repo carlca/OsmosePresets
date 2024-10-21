@@ -64,7 +64,6 @@ object MainForm: TMainForm
     OnGetText = PresetTreeGetText
     OnGetNodeDataSize = PresetTreeGetNodeDataSize
     OnKeyPress = PresetTreeKeyPress
-    OnKeyUp = PresetTreeKeyUp
   end
   object CharacterListPanel: TPanel
     Left = 822
