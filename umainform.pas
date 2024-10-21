@@ -162,10 +162,11 @@ var
   Version: TProgramVersion;
   VersionStr: string;
   OSName: string;
+  Architecture: string;
 begin
   VersionStr := '';
   if GetProgramVersion(Version) then
-    VersionStr := Format(' v%d.%d.%d.%d', [Version.Major, Version.Minor, Version.Revision, Version.Build]);
+    VersionStr := Format('v%d.%d.%d.%d', [Version.Major, Version.Minor, Version.Revision, Version.Build]);
   {$IFDEF DARWIN}
   OSName := 'macOS';
   {$ENDIF}
@@ -175,7 +176,13 @@ begin
   {$IFDEF WINDOWS}
   OSName := 'Windows';
   {$ENDIF}
-  Result := APP_NAME + ' ' + VersionStr + ' ' + APP_STATUS + ' for ' + OSName;
+  {$IFDEF CPUAARCH64}
+  Architecture := 'aarch64';
+  {$ENDIF}
+  {$IFDEF CPUX86_64}
+  Architecture := 'x86_64';
+  {$ENDIF}
+  Result := Format('%s for %s %s - %s %s', [APP_NAME, OSName, Architecture, VersionStr, APP_STATUS])
 end;
 
 procedure TMainForm.FormShow(Sender: TObject);

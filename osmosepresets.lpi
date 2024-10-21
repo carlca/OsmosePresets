@@ -18,7 +18,7 @@
       <AutoIncrementBuild Value="True"/>
       <MinorVersionNr Value="2"/>
       <RevisionNr Value="2"/>
-      <BuildNr Value="12"/>
+      <BuildNr Value="38"/>
       <Language Value="0809"/>
       <Attributes pvaPreRelease="True"/>
     </VersionInfo>
@@ -232,7 +232,7 @@
   <CompilerOptions>
     <Version Value="11"/>
     <Target>
-      <Filename Value="OsmosePresets_$(BuildMode)"/>
+      <Filename Value="OsmosePresets_macOS_aarch64"/>
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
@@ -263,6 +263,9 @@
 -vd
 -gh 
 -gl"/>
+      <ExecuteAfter>
+        <Command Value="./post_build.sh"/>
+      </ExecuteAfter>
     </Other>
   </CompilerOptions>
   <Debugging>
