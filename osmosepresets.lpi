@@ -18,7 +18,7 @@
       <AutoIncrementBuild Value="True"/>
       <MinorVersionNr Value="2"/>
       <RevisionNr Value="2"/>
-      <BuildNr Value="47"/>
+      <BuildNr Value="50"/>
       <Language Value="0809"/>
       <Attributes pvaPreRelease="True"/>
     </VersionInfo>
@@ -264,7 +264,7 @@
 -gh 
 -gl"/>
       <ExecuteAfter>
-        <Command Value="./post_build.sh"/>
+        <Command Value="./build_app_macos.sh"/>
         <CompileReasons Run="False"/>
       </ExecuteAfter>
     </Other>

@@ -156,7 +156,6 @@ end;
 
 function TMainForm.GetCaptionWithVersion: string;
 var
-
   Version: TProgramVersion;
   VersionStr: string;
   OSName: string;
