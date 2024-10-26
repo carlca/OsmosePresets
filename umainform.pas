@@ -41,6 +41,8 @@ type
     procedure OptionsButtonClick(Sender: TObject);
     procedure PresetTreeAfterItemPaint(Sender: TBaseVirtualTree; TargetCanvas: TCanvas; Node: PVirtualNode; const ItemRect: TRect);
     procedure PresetTreeCollapsing(Sender: TBaseVirtualTree; Node: PVirtualNode; var Allowed: boolean);
+    procedure PresetTreeDrawText(Sender: TBaseVirtualTree; TargetCanvas: TCanvas; Node: PVirtualNode; Column: TColumnIndex; const CellText: string;
+      const CellRect: TRect; var DefaultDraw: boolean);
     procedure PresetTreeExpanding(Sender: TBaseVirtualTree; Node: PVirtualNode; var Allowed: boolean);
     procedure PresetTreeFreeNode(Sender: TBaseVirtualTree; Node: PVirtualNode);
     procedure PresetTreeGetNodeDataSize(Sender: TBaseVirtualTree; var NodeDataSize: integer);
@@ -66,11 +68,11 @@ type
   end;
 
 const
-  APP_NAME        = 'OsmosePresets';
-  APP_STATUS      = 'alpha';
-  ENTER_KEY       = #13;
-  CATEGORY_LEVEL  = 0;
-  PRESET_LEVEL    = 1;
+  APP_NAME     = 'OsmosePresets';
+  APP_STATUS   = 'alpha';
+  ENTER_KEY    = #13;
+  CATEGORY_LEVEL = 0;
+  PRESET_LEVEL = 1;
 
 var
   MainForm: TMainForm;
@@ -88,6 +90,11 @@ begin
   CharacterList.OnKeyUp := @GlobalKeyUp;
   SearchEdit.AEdit.OnKeyUp := @GlobalKeyUp;
   FPresetData := TPresetData.Create;
+  WindowState := wsNormal;
+  //PresetTree.Header.Columns[0].Width := 200;
+  //PresetTree.Header.Columns[1].Width := 50;
+  //PresetTree.Header.Columns[2].Width := 50;
+  //PresetTree.Header.Columns[3].Width := 480;
 end;
 
 procedure TMainForm.FormDestroy(Sender: TObject);
@@ -179,7 +186,7 @@ begin
   {$IFDEF CPUX86_64}
   Architecture := 'x86_64';
   {$ENDIF}
-  Result := Format('%s for %s %s - %s %s', [APP_NAME, OSName, Architecture, VersionStr, APP_STATUS])
+  Result := Format('%s for %s %s - %s %s', [APP_NAME, OSName, Architecture, VersionStr, APP_STATUS]);
 end;
 
 procedure TMainForm.FormShow(Sender: TObject);
@@ -279,6 +286,9 @@ var
   end;
 
 begin
+  {$IFDEF WINDOWS}
+  exit;
+  {$ENDIF}
   Level := PresetTree.GetNodeLevel(Node);
   if Level = CATEGORY_LEVEL then
   begin
@@ -302,6 +312,19 @@ end;
 procedure TMainForm.PresetTreeCollapsing(Sender: TBaseVirtualTree; Node: PVirtualNode; var Allowed: boolean);
 begin
   ClearCharacterList;
+end;
+
+procedure TMainForm.PresetTreeDrawText(Sender: TBaseVirtualTree; TargetCanvas: TCanvas; Node: PVirtualNode; Column: TColumnIndex; const CellText: string;
+  const CellRect: TRect; var DefaultDraw: boolean);
+var
+  YOffset: Integer;
+begin
+  DefaultDraw := False;
+  YOffset := 0;
+  {$IFDEF WINDOWS}
+  YOffset := -2;
+  {$ENDIF}
+  TargetCanvas.TextOut(CellRect.Left, CellRect.Top + YOffset, CellText);
 end;
 
 procedure TMainForm.PresetTreeExpanding(Sender: TBaseVirtualTree; Node: PVirtualNode; var Allowed: boolean);

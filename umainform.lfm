@@ -60,6 +60,7 @@ object MainForm: TMainForm
     TreeOptions.SelectionOptions = [toFullRowSelect]
     OnAfterItemPaint = PresetTreeAfterItemPaint
     OnCollapsing = PresetTreeCollapsing
+    OnDrawText = PresetTreeDrawText
     OnExpanding = PresetTreeExpanding
     OnGetText = PresetTreeGetText
     OnGetNodeDataSize = PresetTreeGetNodeDataSize
