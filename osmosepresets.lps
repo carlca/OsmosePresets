@@ -2,7 +2,7 @@
 <CONFIG>
   <ProjectSession>
     <Version Value="12"/>
-    <BuildModes Active="Linux aarch86"/>
+    <BuildModes Active="Linux_aarch86"/>
     <Units>
       <Unit>
         <Filename Value="OsmosePresets.lpr"/>
@@ -18,8 +18,7 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="uMainForm"/>
         <IsVisibleTab Value="True"/>
-        <TopLine Value="89"/>
-        <CursorPos X="5" Y="100"/>
+        <CursorPos X="10" Y="5"/>
         <UsageCount Value="209"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>

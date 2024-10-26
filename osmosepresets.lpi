@@ -101,7 +101,7 @@
           </Other>
         </CompilerOptions>
       </Item>
-      <Item Name="Linux aarch86">
+      <Item Name="Linux_aarch86">
         <CompilerOptions>
           <Version Value="11"/>
           <Target>
@@ -138,7 +138,7 @@
           </Other>
         </CompilerOptions>
       </Item>
-      <Item Name="Linux x86_64">
+      <Item Name="Linux_x86_64">
         <CompilerOptions>
           <Version Value="11"/>
           <Target>
