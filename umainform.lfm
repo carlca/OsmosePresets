@@ -22,6 +22,7 @@ object MainForm: TMainForm
     Align = alClient
     DefaultText = 'Node'
     Header.AutoSizeIndex = 0
+    Header.Background = clBtnShadow
     Header.Columns = <    
       item
         MaxWidth = 200
@@ -63,6 +64,7 @@ object MainForm: TMainForm
     OnExpanding = PresetTreeExpanding
     OnGetText = PresetTreeGetText
     OnGetNodeDataSize = PresetTreeGetNodeDataSize
+    OnHeaderDraw = PresetTreeHeaderDraw
     OnKeyPress = PresetTreeKeyPress
   end
   object CharacterListPanel: TPanel

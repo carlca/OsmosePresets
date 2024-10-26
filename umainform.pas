@@ -46,6 +46,7 @@ type
     procedure PresetTreeFreeNode(Sender: TBaseVirtualTree; Node: PVirtualNode);
     procedure PresetTreeGetNodeDataSize(Sender: TBaseVirtualTree; var NodeDataSize: integer);
     procedure PresetTreeGetText(Sender: TBaseVirtualTree; Node: PVirtualNode; Column: TColumnIndex; TextType: TVSTTextType; var CellText: string);
+    procedure PresetTreeHeaderDraw(Sender: TVTHeader; HeaderCanvas: TCanvas; Column: TVirtualTreeColumn; const R: TRect; Hover, Pressed: boolean; DropMark: TVTDropMarkMode);
     procedure PresetTreeKeyPress(Sender: TObject; var Key: char);
   private
     FPresetData: TPresetData;
@@ -182,8 +183,8 @@ end;
 procedure TMainForm.FormShow(Sender: TObject);
 {$IFDEF WINDOWS}
 var
-  Index: Integer;
-  Scale: Double;
+  Index: integer;
+  Scale: double;
   Col: TVirtualTreeColumn;
 {$ENDIF}
 begin
@@ -325,8 +326,8 @@ begin
   ClearCharacterList;
 end;
 
-procedure TMainForm.PresetTreeDrawText(Sender: TBaseVirtualTree; TargetCanvas: TCanvas; Node: PVirtualNode; Column: TColumnIndex; const CellText: string;
-  const CellRect: TRect; var DefaultDraw: boolean);
+procedure TMainForm.PresetTreeDrawText(Sender: TBaseVirtualTree; TargetCanvas: TCanvas; Node: PVirtualNode; Column: TColumnIndex;
+  const CellText: string; const CellRect: TRect; var DefaultDraw: boolean);
 var
   YOffset: Integer;
 begin
@@ -413,6 +414,15 @@ begin
       4: CellText := '';
     end;
   end;
+end;
+
+procedure TMainForm.PresetTreeHeaderDraw(Sender: TVTHeader; HeaderCanvas: TCanvas; Column: TVirtualTreeColumn; const R: TRect; Hover, Pressed: boolean;
+  DropMark: TVTDropMarkMode);
+begin
+  {$IFDEF WINDOWS}
+  HeaderCanvas.Brush.Color := clYellow;  // Or your desired color
+  HeaderCanvas.FillRect(R);
+  {$ENDIF}
 end;
 
 procedure TMainForm.PresetTreeKeyPress(Sender: TObject; var Key: char);
