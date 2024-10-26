@@ -1,4 +1,4 @@
-Sunit uMainForm;
+unit uMainForm;
 
 {$MODE OBJFPC}{$H+}
 
