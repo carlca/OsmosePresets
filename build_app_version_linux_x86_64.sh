@@ -13,9 +13,9 @@ ORIGINAL_EXECUTABLE="OsmosePresets_Linux x86_64"  # Replace with your actual exe
 NEW_EXECUTABLE="${ORIGINAL_EXECUTABLE}_${VERSION}"
 
 # Rename the compiled executable
-if [ -f "${ORIGINAL_EXECUTABLE}.exe" ]; then
-    mv "${ORIGINAL_EXECUTABLE}.exe" "${NEW_EXECUTABLE}.exe"
-    echo "Executable renamed to ${NEW_EXECUTABLE}.exe"
+if [ -f "${ORIGINAL_EXECUTABLE}" ]; then
+    mv "${ORIGINAL_EXECUTABLE}" "${NEW_EXECUTABLE}"
+    echo "Executable renamed to ${NEW_EXECUTABLE}"
 else
     echo "Error: Original executable not found."
     exit 1
