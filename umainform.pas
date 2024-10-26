@@ -1,4 +1,4 @@
-unit uMainForm;
+Sunit uMainForm;
 
 {$MODE OBJFPC}{$H+}
 
@@ -103,6 +103,7 @@ procedure TMainForm.ShowSettings;
 var
   SettingsForm: TSettingsForm;
 begin
+  {$IFNDEF LINUX}
   SettingsForm := TSettingsForm.Create(nil);
   try
     SettingsForm.Settings := FSettings;
@@ -115,6 +116,7 @@ begin
   finally
     SettingsForm.Free;
   end;
+  {$ENDIF}
 end;
 
 procedure TMainForm.GlobalKeyUp(Sender: TObject; var Key: word; Shift: TShiftState);

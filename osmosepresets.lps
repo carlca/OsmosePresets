@@ -2,7 +2,7 @@
 <CONFIG>
   <ProjectSession>
     <Version Value="12"/>
-    <BuildModes Active="Windows"/>
+    <BuildModes Active="Linux aarch86"/>
     <Units>
       <Unit>
         <Filename Value="OsmosePresets.lpr"/>
@@ -18,8 +18,8 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="uMainForm"/>
         <IsVisibleTab Value="True"/>
-        <TopLine Value="408"/>
-        <CursorPos Y="413"/>
+        <TopLine Value="89"/>
+        <CursorPos X="5" Y="100"/>
         <UsageCount Value="209"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -107,8 +107,8 @@
         <Filename Value="../caMidi/camidilinux.pas"/>
         <UnitName Value="caMidiLinux"/>
         <EditorIndex Value="11"/>
-        <TopLine Value="89"/>
-        <CursorPos X="6" Y="122"/>
+        <TopLine Value="117"/>
+        <CursorPos Y="162"/>
         <UsageCount Value="100"/>
         <Loaded Value="True"/>
       </Unit>
@@ -118,7 +118,7 @@
         <EditorIndex Value="8"/>
         <TopLine Value="109"/>
         <CursorPos X="13" Y="118"/>
-        <UsageCount Value="77"/>
+        <UsageCount Value="78"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -126,7 +126,7 @@
         <UnitName Value="caLibraryReg"/>
         <EditorIndex Value="9"/>
         <CursorPos Y="14"/>
-        <UsageCount Value="77"/>
+        <UsageCount Value="78"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -134,7 +134,7 @@
         <EditorIndex Value="3"/>
         <TopLine Value="3592"/>
         <CursorPos Y="3630"/>
-        <UsageCount Value="42"/>
+        <UsageCount Value="43"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -150,7 +150,7 @@
         <EditorIndex Value="4"/>
         <TopLine Value="513"/>
         <CursorPos Y="540"/>
-        <UsageCount Value="42"/>
+        <UsageCount Value="43"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -201,7 +201,7 @@
         <EditorIndex Value="5"/>
         <TopLine Value="8320"/>
         <CursorPos Y="8346"/>
-        <UsageCount Value="42"/>
+        <UsageCount Value="43"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -210,7 +210,7 @@
         <EditorIndex Value="6"/>
         <TopLine Value="1659"/>
         <CursorPos Y="1689"/>
-        <UsageCount Value="42"/>
+        <UsageCount Value="43"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -219,7 +219,7 @@
         <EditorIndex Value="7"/>
         <TopLine Value="961"/>
         <CursorPos Y="984"/>
-        <UsageCount Value="42"/>
+        <UsageCount Value="43"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -227,7 +227,7 @@
         <UnitName Value="caUtils"/>
         <EditorIndex Value="2"/>
         <CursorPos X="11" Y="10"/>
-        <UsageCount Value="42"/>
+        <UsageCount Value="43"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -239,34 +239,6 @@
       </Unit>
     </Units>
     <JumpHistory HistoryIndex="29">
-      <Position>
-        <Filename Value="umainform.pas"/>
-        <Caret Line="642" Column="5" TopLine="597"/>
-      </Position>
-      <Position>
-        <Filename Value="umainform.pas"/>
-        <Caret Line="117" TopLine="80"/>
-      </Position>
-      <Position>
-        <Filename Value="umainform.pas"/>
-        <Caret Line="109" TopLine="84"/>
-      </Position>
-      <Position>
-        <Filename Value="umainform.pas"/>
-        <Caret Line="202" Column="11" TopLine="182"/>
-      </Position>
-      <Position>
-        <Filename Value="umainform.pas"/>
-        <Caret Line="185" Column="3" TopLine="185"/>
-      </Position>
-      <Position>
-        <Filename Value="umainform.pas"/>
-        <Caret Line="204" Column="5" TopLine="181"/>
-      </Position>
-      <Position>
-        <Filename Value="umainform.pas"/>
-        <Caret Line="187" Column="9" TopLine="186"/>
-      </Position>
       <Position>
         <Filename Value="umainform.pas"/>
         <Caret Line="252" Column="53" TopLine="242"/>
@@ -357,6 +329,33 @@
       <Position>
         <Filename Value="umainform.pas"/>
         <Caret Line="418" Column="3" TopLine="418"/>
+      </Position>
+      <Position>
+        <Filename Value="../caMidi/camidilinux.pas"/>
+        <Caret Line="95" Column="85" TopLine="89"/>
+      </Position>
+      <Position>
+        <Filename Value="umainform.pas"/>
+        <Caret Line="431" Column="58" TopLine="422"/>
+      </Position>
+      <Position>
+        <Filename Value="umainform.pas"/>
+        <Caret Column="2"/>
+      </Position>
+      <Position>
+        <Filename Value="umainform.pas"/>
+        <Caret Line="64" Column="21" TopLine="27"/>
+      </Position>
+      <Position>
+        <Filename Value="umainform.pas"/>
+      </Position>
+      <Position>
+        <Filename Value="umainform.pas"/>
+        <Caret Line="24" TopLine="24"/>
+      </Position>
+      <Position>
+        <Filename Value="umainform.pas"/>
+        <Caret Line="64" Column="21" TopLine="27"/>
       </Position>
     </JumpHistory>
     <RunParams>

@@ -132,6 +132,9 @@
             <CustomOptions Value="-vd
 -gh 
 -gl"/>
+            <ExecuteAfter>
+              <Command Value="./build_app_version_macos_aarch64.sh"/>
+            </ExecuteAfter>
           </Other>
         </CompilerOptions>
       </Item>
@@ -166,6 +169,9 @@
             <CustomOptions Value="-vd
 -gh 
 -gl"/>
+            <ExecuteAfter>
+              <Command Value="./build_app_version_macos_x86_64.sh"/>
+            </ExecuteAfter>
           </Other>
         </CompilerOptions>
       </Item>
