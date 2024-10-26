@@ -1,7 +1,7 @@
 object MainForm: TMainForm
-  Left = 695
+  Left = 751
   Height = 813
-  Top = 203
+  Top = 179
   Width = 1000
   BorderWidth = 8
   Caption = 'OsmosePresets 0.1.1 alpha'
@@ -12,7 +12,6 @@ object MainForm: TMainForm
   OnActivate = FormActivate
   OnCreate = FormCreate
   OnDestroy = FormDestroy
-  OnResize = FormResize
   OnShow = FormShow
   object PresetTree: TLazVirtualStringTree
     Cursor = 63

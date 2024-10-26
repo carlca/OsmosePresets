@@ -36,7 +36,6 @@ type
     procedure FormActivate(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
-    procedure FormResize(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure OptionsButtonClick(Sender: TObject);
     procedure PresetTreeAfterItemPaint(Sender: TBaseVirtualTree; TargetCanvas: TCanvas; Node: PVirtualNode; const ItemRect: TRect);
@@ -91,21 +90,12 @@ begin
   SearchEdit.AEdit.OnKeyUp := @GlobalKeyUp;
   FPresetData := TPresetData.Create;
   WindowState := wsNormal;
-  //PresetTree.Header.Columns[0].Width := 200;
-  //PresetTree.Header.Columns[1].Width := 50;
-  //PresetTree.Header.Columns[2].Width := 50;
-  //PresetTree.Header.Columns[3].Width := 480;
 end;
 
 procedure TMainForm.FormDestroy(Sender: TObject);
 begin
   if Assigned(FPresetData) then
     FreeAndNil(FPresetData);
-end;
-
-procedure TMainForm.FormResize(Sender: TObject);
-begin
-  //Caption := 'Osmose Presets - ' + Width.ToString;
 end;
 
 procedure TMainForm.ShowSettings;
@@ -190,6 +180,12 @@ begin
 end;
 
 procedure TMainForm.FormShow(Sender: TObject);
+{$IFDEF WINDOWS}
+var
+  Index: Integer;
+  Scale: Double;
+  Col: TVirtualTreeColumn;
+{$ENDIF}
 begin
   {$IFDEF DARWIN}
   ToolbarPanel.Visible := False;
@@ -201,6 +197,19 @@ begin
   CharacterListHeaderLabel.Color := clBtnFace;
   Caption := GetCaptionWithVersion;
   PresetTree.Header.Height := 19;
+  {$IFDEF WINDOWS}
+  Scale := Screen.PixelsPerInch / 96;
+  for Index := 0 to PresetTree.Header.Columns.Count - 1 do
+  begin
+    Col := PresetTree.Header.Columns[Index];
+    if Col.MaxWidth > 0 then
+      Col.MaxWidth := Round(Col.MaxWidth * Scale);
+    if Col.MinWidth > 0 then
+      Col.MinWidth := Round(Col.MinWidth * Scale);
+    Col.Width := Round(Col.Width * Scale);
+  end;
+  PresetTree.Invalidate;
+  {$ENDIF}
 end;
 
 procedure TMainForm.OptionsButtonClick(Sender: TObject);
@@ -260,6 +269,7 @@ var
     Points: array[0..2] of TPoint;
     ArrowColor: TColor;
   begin
+    {$IFNDEF WINDOWS}
     // Set colors
     if Focused or Selected then
       ArrowColor := PresetTree.Colors.SelectionTextColor
@@ -283,6 +293,7 @@ var
       Points[2] := Point(6, 12);
     end;
     Canvas.Polygon(Points);
+    {$ENDIF}
   end;
 
 begin

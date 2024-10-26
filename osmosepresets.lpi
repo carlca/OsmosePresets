@@ -18,7 +18,7 @@
       <AutoIncrementBuild Value="True"/>
       <MinorVersionNr Value="2"/>
       <RevisionNr Value="3"/>
-      <BuildNr Value="13"/>
+      <BuildNr Value="33"/>
       <Language Value="0809"/>
       <Attributes pvaPreRelease="True"/>
     </VersionInfo>
@@ -46,6 +46,11 @@
               <UseHeaptrc Value="True"/>
               <UseExternalDbgSyms Value="True"/>
             </Debugging>
+            <Options>
+              <Win32>
+                <GraphicApplication Value="True"/>
+              </Win32>
+            </Options>
           </Linking>
           <Other>
             <CustomOptions Value="-vd
@@ -62,7 +67,7 @@
         <CompilerOptions>
           <Version Value="11"/>
           <Target>
-            <Filename Value="OsmosePresets_$(BuildMode)"/>
+            <Filename Value="OsmosePresets_macOS_x86_64"/>
           </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>
@@ -90,6 +95,9 @@
 -vd
 -gh 
 -gl"/>
+            <ExecuteAfter>
+              <Command Value="./build_app_macos_x86_64.sh"/>
+            </ExecuteAfter>
           </Other>
         </CompilerOptions>
       </Item>
@@ -266,7 +274,7 @@
 -gh 
 -gl"/>
       <ExecuteAfter>
-        <Command Value="./build_app_macos.sh"/>
+        <Command Value="./build_app_macos_aarch64.sh"/>
         <CompileReasons Run="False"/>
       </ExecuteAfter>
     </Other>

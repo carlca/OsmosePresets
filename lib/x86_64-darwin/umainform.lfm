@@ -1,18 +1,17 @@
 object MainForm: TMainForm
-  Left = 695
+  Left = 751
   Height = 813
-  Top = 203
+  Top = 179
   Width = 1000
   BorderWidth = 8
   Caption = 'OsmosePresets 0.1.1 alpha'
   ClientHeight = 813
   ClientWidth = 1000
   Position = poScreenCenter
-  LCLVersion = '3.99.0.0'
+  LCLVersion = '4.99.0.0'
   OnActivate = FormActivate
   OnCreate = FormCreate
   OnDestroy = FormDestroy
-  OnResize = FormResize
   OnShow = FormShow
   object PresetTree: TLazVirtualStringTree
     Cursor = 63
@@ -60,11 +59,11 @@ object MainForm: TMainForm
     TreeOptions.SelectionOptions = [toFullRowSelect]
     OnAfterItemPaint = PresetTreeAfterItemPaint
     OnCollapsing = PresetTreeCollapsing
+    OnDrawText = PresetTreeDrawText
     OnExpanding = PresetTreeExpanding
     OnGetText = PresetTreeGetText
     OnGetNodeDataSize = PresetTreeGetNodeDataSize
     OnKeyPress = PresetTreeKeyPress
-    OnKeyUp = PresetTreeKeyUp
   end
   object CharacterListPanel: TPanel
     Left = 822
@@ -146,7 +145,7 @@ object MainForm: TMainForm
     ClientWidth = 984
     TabOrder = 3
     Visible = False
-    object caEdit1: TcaEdit
+    object SearchEdit: TcaEdit
       Left = 6
       Height = 23
       Top = 6
@@ -157,7 +156,8 @@ object MainForm: TMainForm
       AEdit.Width = 920
       AEdit.Align = alRight
       AEdit.TabOrder = 0
-      AEdit.Text = 'Search'
+      AEdit.OnChange = caEditChange
+      AEdit.OnKeyPress = caEditKeyPress
       ALabel.Left = 0
       ALabel.Height = 23
       ALabel.Top = 0
