@@ -18,7 +18,7 @@
       <AutoIncrementBuild Value="True"/>
       <MinorVersionNr Value="2"/>
       <RevisionNr Value="2"/>
-      <BuildNr Value="50"/>
+      <BuildNr Value="57"/>
       <Language Value="0809"/>
       <Attributes pvaPreRelease="True"/>
     </VersionInfo>
@@ -52,6 +52,9 @@
 -gh 
 -glh
 -Xg"/>
+            <ExecuteAfter>
+              <Command Value="./build_app_version_windows.sh"/>
+            </ExecuteAfter>
           </Other>
         </CompilerOptions>
       </Item>
@@ -98,7 +101,7 @@
           </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>
-            <OtherUnitFiles Value="/Applications/Lazarus_trunk/fpcsrc/packages/univint/namespaced/;../caMidi"/>
+            <OtherUnitFiles Value="../caMidi;../caPortMidi"/>
             <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
           </SearchPaths>
           <CodeGeneration>
@@ -223,7 +226,7 @@
         <UnitName Value="caMidiIntf"/>
       </Unit>
       <Unit>
-        <Filename Value="../camidi/camiditypes.pas"/>
+        <Filename Value="../caMidi/camiditypes.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="caMidiTypes"/>
       </Unit>
@@ -247,7 +250,6 @@
       <Debugging>
         <DebugInfoType Value="dsDwarf3"/>
         <UseHeaptrc Value="True"/>
-        <UseExternalDbgSyms Value="True"/>
       </Debugging>
       <Options>
         <Win32>

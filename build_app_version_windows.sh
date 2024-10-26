@@ -9,13 +9,13 @@ VERSION_BUILD=$(xmllint --xpath 'string(//VersionInfo/BuildNr/@Value)' *.lpi)
 VERSION="${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_RELEASE}.${VERSION_BUILD}"
 
 # Define the original and new executable names
-ORIGINAL_EXECUTABLE="OsmosePresets_macOS_aarch64"  # Replace with your actual executable name
+ORIGINAL_EXECUTABLE="OsmosePresets_Windows"  # Replace with your actual executable name
 NEW_EXECUTABLE="${ORIGINAL_EXECUTABLE}_${VERSION}"
 
 # Rename the compiled executable
-if [ -f "${ORIGINAL_EXECUTABLE}" ]; then
-    mv "${ORIGINAL_EXECUTABLE}.app" "${NEW_EXECUTABLE}.app"
-    echo "Executable renamed to ${NEW_EXECUTABLE}.app"
+if [ -f "${ORIGINAL_EXECUTABLE}.exe" ]; then
+    mv "${ORIGINAL_EXECUTABLE}.exe" "${NEW_EXECUTABLE}.exe"
+    echo "Executable renamed to ${NEW_EXECUTABLE}.exe"
 else
     echo "Error: Original executable not found."
     exit 1
