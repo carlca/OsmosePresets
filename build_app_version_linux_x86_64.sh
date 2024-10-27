@@ -9,7 +9,7 @@ VERSION_BUILD=$(xmllint --xpath 'string(//VersionInfo/BuildNr/@Value)' *.lpi)
 VERSION="${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_RELEASE}.${VERSION_BUILD}"
 
 # Define the original and new executable names
-ORIGINAL_EXECUTABLE="OsmosePresets_Linux x86_64"  # Replace with your actual executable name
+ORIGINAL_EXECUTABLE="OsmosePresets_Linux_x86_64"  # Replace with your actual executable name
 NEW_EXECUTABLE="${ORIGINAL_EXECUTABLE}_${VERSION}"
 
 # Rename the compiled executable
