@@ -132,8 +132,9 @@
             <CustomOptions Value="-vd
 -gh 
 -gl"/>
+            <CompilerPath Value="/usr/bin/fpc"/>
             <ExecuteAfter>
-              <Command Value="./build_app_version_macos_aarch64.sh"/>
+              <Command Value="./build_app_version_linux_aarch64.sh"/>
             </ExecuteAfter>
           </Other>
         </CompilerOptions>
@@ -169,8 +170,9 @@
             <CustomOptions Value="-vd
 -gh 
 -gl"/>
+            <CompilerPath Value="/usr/bin/fpc"/>
             <ExecuteAfter>
-              <Command Value="./build_app_version_macos_x86_64.sh"/>
+              <Command Value="./build_app_version_linux_x86_64.sh"/>
             </ExecuteAfter>
           </Other>
         </CompilerOptions>
